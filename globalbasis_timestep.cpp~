@@ -1,0 +1,38 @@
+#include "./classes.h"
+//#include "./globalbasis.h"
+#include "./linearsystemsetup.h"
+//#include "./temporalbasis.h"
+
+
+cmplx* globalbasis::timestep(cmplx* psi_global, rl t1, rl t2){
+  //set up and solve linear system corresponding to time step from time t1 to t2
+
+  //first, need up update temporal matrices to correspond to time step
+
+  cmplx** gls_band=globallinearsystem_banded(psi_global);
+  cmplx* gls_rhs=gls_band[0];
+  cmplx* gls_lhs=gls_band[1];
+
+  int nxbases=nelts*xorder-(nelts-1);//number of x basis functions, less
+                                     //double counted boundary functions
+  int neq=nxbases*(torder-1);
+  int nrhs=1;
+  int neqelt=xorder*(torder-1);//number of equations per element
+  int ku=neqelt;
+  int kl=neqelt;
+  int ldab=2*kl+ku+1;
+  int* ipiv=new int[neq];
+  int info=0;
+  zgbsv(&neq, &kl, &ku, &nrhs,gls_lhs,&ldab,ipiv,gls_rhs,neq,&info);
+  if(info!=0){
+    cout << "problem with zgbsv in timestep!\n";
+  }
+
+  cmplx* psinew=initializearray(nxbases);
+
+  delete [] ipiv;
+  delete [] gls_rhs;
+  delete [] gls_lhs;
+  delete [] gls_band;
+  return psinew;
+}

@@ -1,0 +1,123 @@
+from numpy import *
+from pylab import *
+from math import pi
+import glob
+import matplotlib.cm as cm#color maps
+import matplotlib.pyplot as plt
+from matplotlib.collections import LineCollection
+#import matplotlib.animation as animation#animation requires animation module
+#to be installed on the computer (not true at work, but these functions work
+#on my laptop -ZW)
+
+
+def plotwf(filename):
+    array1=genfromtxt(filename)
+    (n1,n2)=shape(array1)
+    cmplxarray=array1[:,1]+1j*array1[:,2]
+    xarray=array1[:,0]
+    rangearray=.5*(1+angle(cmplxarray)/pi)
+    colorarray=cm.hsv(rangearray,1)
+    ##colorplot(xarray,cmplxarray)
+    #figure()
+    #scatter(xarray,abs(cmplxarray),color=colorarray)
+    ##for i in range(n1):
+    ##    scatter(xarray[i],abs(cmplxarray[i]),color=colorarray[i])
+    #show()
+    clf()
+    colorplot(xarray,cmplxarray)
+    return
+
+def colorplot(x,z):
+    #tiny=1e-10
+    #y=log(abs(z)+tiny)
+    y=abs(z)
+    theta=angle(0.5*(z[:-1]+z[1:]))
+    colorarray=cm.hsv(.5*(1+theta/pi))
+
+    # Create a set of line segments so that we can color them individually
+    # This creates the points as a N x 1 x 2 array so that we can stack points
+    # together easily to get the segments. The segments array for line
+    # collection needs to be numlines x points per line x 2 (x and y)
+    points = np.array([x, y]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+    
+    lc = LineCollection(segments, colors=colorarray)
+
+    #fig1 = plt.figure()
+    plt.gca().add_collection(lc)
+    plt.xlim(x.min(), x.max())
+    plt.ylim(y.min(),y.max())
+    #plt.show()
+    
+def init():
+    xdat=[0]
+    ydat=[0]
+    plot(xdat,ydat)
+
+def globplot(globstring):
+    figure()
+    filelist=glob.glob(globstring)
+    natsort(filelist)
+    for filename in filelist:
+        print "plotting file "+filename
+        plotwf(filename)
+    show()
+
+def globplot_lastn(globstring,n):
+    figure()
+    filelist=glob.glob(globstring)
+    natsort(filelist)
+    for filename in filelist[-n:]:
+        plotwf(filename)
+    show()
+
+
+# ---------------------------------------------------------
+# natsort.py: Natural string sorting.
+# ---------------------------------------------------------
+
+# By Seo Sanghyeon.  Some changes by Connelly Barnes.
+
+def try_int(s):
+    "Convert to integer if possible."
+    try: return int(s)
+    except: return s
+
+def natsort_key(s):
+    "Used internally to get a tuple by which s is sorted."
+    import re
+    return map(try_int, re.findall(r'(\d+|\D+)', s))
+
+def natcmp(a, b):
+    "Natural string comparison, case sensitive."
+    return cmp(natsort_key(a), natsort_key(b))
+
+def natcasecmp(a, b):
+    "Natural string comparison, ignores case."
+    return natcmp(a.lower(), b.lower())
+
+def natsort(seq, cmp=natcmp):
+    "In-place natural string sort."
+    seq.sort(cmp)
+    
+def natsorted(seq, cmp=natcmp):
+    "Returns a copy of seq, sorted by natural string sort."
+    import copy
+    temp = copy.copy(seq)
+    natsort(temp, cmp)
+    return temp
+
+
+###############functions for animation
+
+def animate(i,filelist):
+    filename=filelist[i];
+    plotwf(filename)
+
+def globanimate(globstring):
+    fig=plt.figure()
+    window=fig.add_subplot(1,1,1)
+    filelist=glob.glob(globstring)
+    natsort(filelist)
+    ani=animation.FuncAnimation(fig,animate,len(filelist),fargs=[filelist])
+    show()

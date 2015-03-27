@@ -1,0 +1,33 @@
+#include "./classes.h"
+
+cmplx* borderfunctionbasis(int order){
+  //zeroth vector is left basis function
+  //order-1st vector is right basis function
+  //intermediate vectors give f_n(x)=P_n(x)-P_{mod(n,2)}(x)
+  cmplx* retmat=new cmplx[order*order];
+  for(int i=0;i<order*order;i++){
+    retmat[i]=0.;
+  }
+  
+  //zeroth vector is left basis function
+  int vecnum=0;
+  retmat[arrayindx(vecnum,0,order,order)]=.5;
+  retmat[arrayindx(vecnum,1,order,order)]=-.5;
+
+  //order-1st vector is left basis function
+  vecnum=order-1;
+  retmat[arrayindx(vecnum,0,order,order)]=.5;
+  retmat[arrayindx(vecnum,1,order,order)]=.5;
+  
+  for(int vecnum=1;vecnum<order-2;vecnum++){
+    int rownum=vecnum+1;
+    retmat[arrayindx(vecnum,rownum,order,order)]=1.;
+    int colnum=rownum%2;
+    retmat[arrayindx(vecnum,colnum,order,order)]=-1.;
+  }
+  
+  cout << "retmat\n";
+  printmat(retmat,order,order);
+
+  return retmat;
+}

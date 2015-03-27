@@ -1,0 +1,1725 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 15.52      0.09     0.09  2186356     0.00     0.00  initializearray(int)
+ 15.52      0.18     0.09   584400     0.00     0.00  derivedbasis::integrateVmat(potential*, double, double)
+ 13.79      0.26     0.08 30504411     0.00     0.00  zeroarray(std::complex<double>*, int)
+  8.62      0.31     0.05 29660139     0.00     0.00  std::complex<double> std::operator*<double>(std::complex<double> const&, double const&)
+  6.90      0.35     0.04 31578345     0.00     0.00  std::complex<double>::operator=(double)
+  5.17      0.38     0.03 15865421     0.00     0.00  std::operator*(std::complex<double> const&, std::complex<double> const&)
+  5.17      0.41     0.03 10106145     0.00     0.00  std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&)
+  5.17      0.44     0.03  7316950     0.00     0.00  std::operator+(std::complex<double> const&, std::complex<double> const&)
+  3.45      0.46     0.02 30363107     0.00     0.00  std::complex<double>::operator*=(double)
+  3.45      0.48     0.02 16625107     0.00     0.00  arrayindx(int, int, int, int)
+  3.45      0.50     0.02                             __intel_new_memset
+  1.72      0.51     0.01  5137530     0.00     0.00  std::operator-(std::complex<double> const&, std::complex<double> const&)
+  1.72      0.52     0.01   606914     0.00     0.00  legendrevalues(int, double)
+  1.72      0.53     0.01    50148     0.00     0.00  derivedbasis::innerproduct(std::complex<double>*, std::complex<double>*)
+  1.72      0.54     0.01    27860     0.00     0.00  transpose(std::complex<double>*, int, int)
+  1.72      0.55     0.01     3184     0.00     0.15  derivedbasis::integrateVmat_testconvergence(potential*, double, double, double)
+  1.72      0.56     0.01        8     1.25     2.23  wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>)
+  1.72      0.57     0.01        2     5.00     8.57  globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double)
+  1.72      0.58     0.01                             hypot.L
+  0.00      0.58     0.00  4882051     0.00     0.00  std::__complex_abs(doublecomplex )
+  0.00      0.58     0.00  4882051     0.00     0.00  double std::abs<double>(std::complex<double> const&)
+  0.00      0.58     0.00  4870088     0.00     0.00  std::complex<double>::operator/=(double)
+  0.00      0.58     0.00  4870024     0.00     0.00  std::complex<double> std::operator/<double>(std::complex<double> const&, double const&)
+  0.00      0.58     0.00   612490     0.00     0.00  vector_basischange(int, int, std::complex<double>*, std::complex<double>*)
+  0.00      0.58     0.00   612490     0.00     0.00  derivedbasis::evalbasisfuncs(double)
+  0.00      0.58     0.00   606914     0.00     0.00  legendrebasis::evalbasisfuncs(double)
+  0.00      0.58     0.00   606914     0.00     0.00  legendrebasis::mapfromchildrange(double, double, double)
+  0.00      0.58     0.00   585992     0.00     0.00  potential::V(double)
+  0.00      0.58     0.00   579568     0.00     0.00  std::complex<double> std::operator*<double>(double const&, std::complex<double> const&)
+  0.00      0.58     0.00   194800     0.00     0.00  derivedbasis::integrateVmat(potential*, double, double, int)
+  0.00      0.58     0.00   129257     0.00     0.00  std::operator-(std::complex<double> const&)
+  0.00      0.58     0.00   101888     0.00     0.00  derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*)
+  0.00      0.58     0.00    93309     0.00     0.00  std::__complex_exp(doublecomplex )
+  0.00      0.58     0.00    93309     0.00     0.00  std::complex<double> std::exp<double>(std::complex<double> const&)
+  0.00      0.58     0.00    80100     0.00     0.00  std::complex<double>& std::complex<double>::operator*=<double>(std::complex<double> const&)
+  0.00      0.58     0.00    78035     0.00     0.00  std::complex<double>& std::complex<double>::operator/=<double>(std::complex<double> const&)
+  0.00      0.58     0.00    59702     0.00     0.00  std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&&&)
+  0.00      0.58     0.00    59141     0.00     0.00  std::abs(double)
+  0.00      0.58     0.00    51740     0.00     0.00  bandarrayindx(int, int, int, int, int)
+  0.00      0.58     0.00    50972     0.00     0.00  std::operator/(std::complex<double> const&, std::complex<double> const&)
+  0.00      0.58     0.00    35933     0.00     0.00  bool __gnu_cxx::__is_null_pointer<char>(char*)
+  0.00      0.58     0.00    35933     0.00     0.00  char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&)
+  0.00      0.58     0.00    35933     0.00     0.00  char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)
+  0.00      0.58     0.00    35933     0.00     0.00  char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type)
+  0.00      0.58     0.00    35933     0.00     0.00  std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag)
+  0.00      0.58     0.00    35933     0.00     0.00  std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&)
+  0.00      0.58     0.00    35933     0.00     0.00  std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*)
+  0.00      0.58     0.00    35821     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&)
+  0.00      0.58     0.00    35821     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*)
+  0.00      0.58     0.00    35820     0.00     0.00  std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...)
+  0.00      0.58     0.00    35820     0.00     0.00  std::to_string(double)
+  0.00      0.58     0.00    27930     0.00     0.00  legendrebasis::mapy2range(double, double, double)
+  0.00      0.58     0.00    27928     0.00     0.00  _ZSt3powIiiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_
+  0.00      0.58     0.00    25087     0.00     0.00  _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_
+  0.00      0.58     0.00    23880     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.00      0.58     0.00    14000     0.00     0.00  std::complex<double>::operator+=(double)
+  0.00      0.58     0.00    12040     0.00     0.00  ecsX(double, double, double)
+  0.00      0.58     0.00    12040     0.00     0.00  potential::Vecs(double, double, double)
+  0.00      0.58     0.00    12000     0.00     0.00  std::complex<double> std::operator+<double>(double const&, std::complex<double> const&)
+  0.00      0.58     0.00    11940     0.00     0.00  derivedbasis::evalcoeffvector(std::complex<double>*, double)
+  0.00      0.58     0.00     8036     0.00     0.00  arraycopy(std::complex<double>*, int)
+  0.00      0.58     0.00     5696     0.00     0.00  laguerrevalues(int, double)
+  0.00      0.58     0.00     5576     0.00     0.00  laguerrebasis::evalbasisfuncs(double)
+  0.00      0.58     0.00     5576     0.00     0.00  laguerrebasis::evallaguerrefuncs(double)
+  0.00      0.58     0.00     5576     0.00     0.00  laguerrebasis::mapfromchildrange(double, double, double)
+  0.00      0.58     0.00     4797     0.00     0.00  matrix_basischange(int, int, std::complex<double>*, std::complex<double>*)
+  0.00      0.58     0.00     4452     0.00     0.00  arrayscale(std::complex<double>*, int, std::complex<double>)
+  0.00      0.58     0.00     4394     0.00     0.00  derivedbasis::integrationtable(int)
+  0.00      0.58     0.00     4382     0.00     0.00  gltable(int, double*, double*)
+  0.00      0.58     0.00     4382     0.00     0.00  legendrebasis::integrationtable(int)
+  0.00      0.58     0.00     4382     0.00     0.00  legendrebasis::dy2dx(double, double)
+  0.00      0.58     0.00     3185     0.00     0.00  basis::oinvpsi(std::complex<double>*)
+  0.00      0.58     0.00     3184     0.00     0.00  derivedbasis::Vmatsetup(potential*)
+  0.00      0.58     0.00     3184     0.00     0.15  derivedbasis::Vmatsetup(potential*, double)
+  0.00      0.58     0.00     2388     0.00     0.00  derivedbasis::printstr(std::complex<double>*)
+  0.00      0.58     0.00     2388     0.00     0.00  derivedbasis::printstr(int, std::complex<double>*)
+  0.00      0.58     0.00     1760     0.00     0.00  laguerreval(int, double)
+  0.00      0.58     0.00     1603     0.00     0.00  basis::basis()
+  0.00      0.58     0.00     1603     0.00     0.00  basis::basis()
+  0.00      0.58     0.00     1595     0.00     0.00  derivedbasis::~derivedbasis()
+  0.00      0.58     0.00     1595     0.00     0.00  std::complex<double> std::operator/<double>(double const&, std::complex<double> const&)
+  0.00      0.58     0.00     1592     0.00     0.00  globalbasis::nextdx(potential*, pulse*, double, double, double, double, double)
+  0.00      0.58     0.00     1592     0.00     0.15  derivedbasis::updateHmat(potential*)
+  0.00      0.58     0.00     1592     0.00     0.00  derivedbasis::hmatsetup()
+  0.00      0.58     0.00     1588     0.00     0.00  derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double)
+  0.00      0.58     0.00     1204     0.00     0.00  derivedbasis::integrateVmat(potential*, double, double, double, double)
+  0.00      0.58     0.00     1204     0.00     0.00  derivedbasis::ecsrotate(double, potential*, double, double)
+  0.00      0.58     0.00     1000     0.00     0.00  std::complex<double>::operator-=(double)
+  0.00      0.58     0.00      880     0.00     0.00  laguerreval(int, int, double)
+  0.00      0.58     0.00      880     0.00     0.00  laguerrederiv(int, int, int, double)
+  0.00      0.58     0.00      796     0.00     0.00  derivedbasis::Olappsi(std::complex<double>*)
+  0.00      0.58     0.00      114     0.00     0.00  triD_U(int, int)
+  0.00      0.58     0.00       85     0.00     0.00  pulse::Az(double)
+  0.00      0.58     0.00       80     0.00     0.00  laguerrederivs(int, int, int, double)
+  0.00      0.58     0.00       80     0.00     0.00  laguerrebasis::mapy2range(double, double, double)
+  0.00      0.58     0.00       63     0.00     0.16  globalbasis::innerproduct(std::complex<double>*, std::complex<double>*)
+  0.00      0.58     0.00       63     0.00     0.16  globalbasis::norm(std::complex<double>*)
+  0.00      0.58     0.00       50     0.00     0.00  triD_Q(int, int)
+  0.00      0.58     0.00       50     0.00     0.16  wf::nthcomponentsignificance(std::complex<double>* restrict*, int)
+  0.00      0.58     0.00       45     0.00     0.00  arraymultiply(std::complex<double>*, int, std::complex<double>)
+  0.00      0.58     0.00       40     0.00     0.00  arraysum(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int)
+  0.00      0.58     0.00       40     0.00     0.00  arraydiff(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int)
+  0.00      0.58     0.00       40     0.00     0.00  pulse::Ez(double)
+  0.00      0.58     0.00       32     0.00     0.00  std::conj(std::complex<double> const&)
+  0.00      0.58     0.00       19     0.00     0.74  wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00       16     0.00     0.00  laguerretable(int, double*, double*)
+  0.00      0.58     0.00       12     0.00     0.00  laguerrebasis::integrationtable(int)
+  0.00      0.58     0.00       12     0.00     0.00  laguerrebasis::dy2dx(double, double)
+  0.00      0.58     0.00       10     0.00     0.63  wf::maxdelta(std::complex<double>* restrict*, int)
+  0.00      0.58     0.00        8     0.00     0.77  wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00        8     0.00     0.00  wf::temporalvector_rhstarget(int, std::complex<double>*, std::complex<double>* restrict*)
+  0.00      0.58     0.00        8     0.00     0.00  wf::psixtdiff(std::complex<double>* restrict*, std::complex<double>* restrict*, int)
+  0.00      0.58     0.00        6     0.00     0.00  leftbordervec(int)
+  0.00      0.58     0.00        6     0.00     0.00  printmat(std::complex<double>*, int, int)
+  0.00      0.58     0.00        5     0.00     0.00  ExpIwt(double, double)
+  0.00      0.58     0.00        5     0.00     0.01  globalbasis::Oinvpsi(std::complex<double>*)
+  0.00      0.58     0.00        4     0.00     0.00  padeigenvectors(int, std::complex<double>*)
+  0.00      0.58     0.00        4     0.00     0.00  globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&, bool)
+  0.00      0.58     0.00        4     0.00     0.00  derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double)
+  0.00      0.58     0.00        4     0.00     0.00  laguerrebasis::laguerrebasis(int, double)
+  0.00      0.58     0.00        4     0.00     0.00  laguerrebasis::~laguerrebasis()
+  0.00      0.58     0.00        4     0.00     0.00  legendrebasis::legendrebasis(int)
+  0.00      0.58     0.00        4     0.00     0.00  legendrebasis::~legendrebasis()
+  0.00      0.58     0.00        4     0.00     0.01  temporalbasis::updateTmats(double, double, pulse*)
+  0.00      0.58     0.00        4     0.00     0.01  temporalbasis::Amatsetup(pulse*)
+  0.00      0.58     0.00        4     0.00     0.00  wf::residualaction(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*)
+  0.00      0.58     0.00        4     0.00     0.24  wf::triD_legendre_conversion(int, std::complex<double>* restrict*)
+  0.00      0.58     0.00        4     0.00     0.00  wf::Upsi(int, std::complex<double>* restrict*)
+  0.00      0.58     0.00        3     0.00     0.00  derivedbasis::derivedbasis()
+  0.00      0.58     0.00        3     0.00     0.00  derivedbasis::derivedbasis()
+  0.00      0.58     0.00        3     0.00     0.00  derivedbasis::~derivedbasis()
+  0.00      0.58     0.00        3     0.00     0.00  temporalbasis::~temporalbasis()
+  0.00      0.58     0.00        3     0.00     0.04  wf::psif(std::complex<double>* restrict*, int)
+  0.00      0.58     0.00        3     0.00     1.21  wf::printstr()
+  0.00      0.58     0.00        2     0.00     0.00  identitybasis(int)
+  0.00      0.58     0.00        2     0.00     0.00  rightbordervec(int)
+  0.00      0.58     0.00        2     0.00     0.00  borderfunctionbasis(int)
+  0.00      0.58     0.00        2     0.00     0.00  generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*)
+  0.00      0.58     0.00        2     0.00     0.00  leftborderfunctionbasis_laguerre(int)
+  0.00      0.58     0.00        2     0.00     0.00  rightborderfunctionbasis_laguerre(int)
+  0.00      0.58     0.00        2     0.00     0.00  triD_Qmat(int)
+  0.00      0.58     0.00        2     0.00     0.00  triD_Umat(int)
+  0.00      0.58     0.00        2     0.00   119.54  globalbasis::setupVmats(potential*)
+  0.00      0.58     0.00        2     0.00   119.63  globalbasis::updateHmats(potential*)
+  0.00      0.58     0.00        2     0.00     0.00  globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&)
+  0.00      0.58     0.00        2     0.00     2.96  globalbasis::ecssetup(int, double, potential*)
+  0.00      0.58     0.00        2     0.00     0.00  globalbasis::~globalbasis()
+  0.00      0.58     0.00        2     0.00     0.00  temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double)
+  0.00      0.58     0.00        2     0.00     1.49  wf::initialguess(int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00        2     0.00     3.72  wf::applydeltapsi(int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00        2     0.00     0.00  wf::eigenvectortowf(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*)
+  0.00      0.58     0.00        2     0.00     0.79  wf::normsum_legendre(int, double, std::complex<double>* restrict*)
+  0.00      0.58     0.00        2     0.00     8.91  wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00        2     0.00     3.72  wf::applydeltapsi_temporaleigenvectors(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00        2     0.00    12.62  wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00        2     0.00     0.00  wf::wf(globalbasis*)
+  0.00      0.58     0.00        2     0.00     0.00  wf::~wf()
+  0.00      0.58     0.00        2     0.00     0.00  potential::potential(double, double)
+  0.00      0.58     0.00        1     0.00     0.00  triD_basischange(int)
+  0.00      0.58     0.00        1     0.00     0.09  globalbasis::boundstate(int, double&)
+  0.00      0.58     0.00        1     0.00     0.01  globalbasis::Olappsi(std::complex<double>*)
+  0.00      0.58     0.00        1     0.00     0.00  derivedbasis::funcvector(std::complex<double> (*)(double, double), double)
+  0.00      0.58     0.00        1     0.00     0.00  derivedbasis::funcolap(std::complex<double> (*)(double, double), double)
+  0.00      0.58     0.00        1     0.00     0.02  temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double)
+  0.00      0.58     0.00        1     0.00     0.00  wf::boundstate(int, double&)
+  0.00      0.58     0.00        1     0.00     1.53  wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*)
+  0.00      0.58     0.00        1     0.00     1.31  wf::boundstatesetup(int, double&)
+  0.00      0.58     0.00        1     0.00    50.80  wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&)
+  0.00      0.58     0.00        1     0.00    46.94  wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*)
+  0.00      0.58     0.00        1     0.00     1.55  wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*)
+  0.00      0.58     0.00        1     0.00    50.80  wf::propagate_iterative_inhomogenous(double, double, double&, pulse*, potential*, wf*, double, double)
+  0.00      0.58     0.00        1     0.00     0.40  wf::lastlegendrecomponentsignificance(int, double, std::complex<double>* restrict*)
+  0.00      0.58     0.00        1     0.00     0.00  pulse::pulse(double, double, double)
+  0.00      0.58     0.00        1     0.00     0.00  double const& std::min<double>(double const&, double const&)
+  0.00      0.58     0.00        1     0.00     0.00  std::to_string(int)
+  0.00      0.58     0.00        1     0.00     0.00  std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN27_INTERNAL_6_wf_cpp_f8275e2bSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN30_INTERNAL_9_basis_cpp_9421bc7aSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN30_INTERNAL_9_pulse_cpp_c2d1dcc1St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN33_INTERNAL_11_gltable_cpp_1d68bff4St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN33_INTERNAL_11_wf_fftw_cpp_f8275e2bSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN34_INTERNAL_12_laguerre_cpp_ab735f84St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN34_INTERNAL_12_legendre_cpp_aa2e7955St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN34_INTERNAL_12_printmat_cpp_9761d633St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN35_INTERNAL_13_functions_cpp_64f858b7St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN35_INTERNAL_13_potential_cpp_2cf1dc2fSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN35_INTERNAL_13_triDbasis_cpp_f10db344St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN37_INTERNAL_15_basischange_cpp_55d00c2eSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN37_INTERNAL_15_globalbasis_cpp_bcfd12ccSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN38_INTERNAL_16_derivedbasis_cpp_4eb668e7St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN38_INTERNAL_16_wf_functions_cpp_4e3cbe5bSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN39_INTERNAL_17_ecsconversion_cpp_e171a1fcSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN39_INTERNAL_17_laguerrebasis_cpp_913365f9St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN39_INTERNAL_17_laguerretable_cpp_ab735f84St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN39_INTERNAL_17_legendrebasis_cpp_66752aaaSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN39_INTERNAL_17_temporalbasis_cpp_97765ad5St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN39_INTERNAL_17_wf_boundstate_cpp_e2f09f72St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN40_INTERNAL_18_arrayfunctions_cpp_5aa1d33aSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN40_INTERNAL_18_onedpropagator_cpp_d6170544St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN40_INTERNAL_18_wfxt_propagate_cpp_4f61988aSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN43_INTERNAL_21_linearsystemsetup_cpp_1c359925St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN45_INTERNAL_23_mapintegrationtable_cpp_a89434f7St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN45_INTERNAL_23_wfxt_minimizeaction_cpp_4f61988aSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN46_INTERNAL_24_wf_iterativesolution_cpp_4e3cbe5bSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN47_INTERNAL_25_globalbasis_psi0setup_cpp_521edac8St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN48_INTERNAL_26_globalbasis_boundstate_cpp_0c1caeecSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN49_INTERNAL_27_globalbasis_eltbdysetup_cpp_dd557286St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN49_INTERNAL_27_globallinearsystemsetup_cpp_1d68bff4St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN52_INTERNAL_30_globalbasis_minimizeaction_cpp_e4053ab8St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN52_INTERNAL_30_linearsystemsetup_lagrange_cpp_1c359925St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN55_INTERNAL_33_sourcewf_inhomogeneous_action_cpp_b047e43dSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN56_INTERNAL_34_wf_iterativesolution_diagonalU_cpp_3df15ce6St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN58_INTERNAL_36_globallinearsystemsetup_lagrange_cpp_1d68bff4St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN63_INTERNAL_41_wf_iterativesolution_incoherentsource_cpp_fb8877c5St8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN67_INTERNAL_45_wf_iterativesolution_temporaleigenvectors_cpp_9a69f9bbSt8__ioinitE
+  0.00      0.58     0.00        1     0.00     0.00  __sti___ZN71_INTERNAL_49_wf_iterativesolution_temporaleigenvectors_aux_cpp_2e5bc8b3St8__ioinitE
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 1.72% of 0.58 seconds
+
+index % time    self  children    called     name
+                                   1             main [1]
+[1]     94.8    0.00    0.55       0+1       main [1]
+                0.00    0.24       2/2           globalbasis::updateHmats(potential*) [7]
+                0.00    0.24       2/2           globalbasis::setupVmats(potential*) [8]
+                0.00    0.05       1/1           wf::propagate_iterative_inhomogenous(double, double, double&, pulse*, potential*, wf*, double, double) [16]
+                0.01    0.01       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+                0.00    0.00       2/3           wf::printstr() [47]
+                0.00    0.00       1/1           wf::boundstatesetup(int, double&) [52]
+                0.00    0.00       2/2           wf::wf(globalbasis*) [87]
+                0.00    0.00       2/2           potential::potential(double, double) [233]
+                0.00    0.00       2/2           globalbasis::~globalbasis() [231]
+                0.00    0.00       2/2           wf::~wf() [232]
+                0.00    0.00       1/1           pulse::pulse(double, double, double) [235]
+                0.00    0.00       1/1           std::to_string(int) [237]
+                0.00    0.00       1/1           std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [238]
+                0.00    0.00       1/35821       std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*) [179]
+                0.00    0.00       1/35821       std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [178]
+                                   1             main [1]
+-----------------------------------------------
+                             2586816             derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+                0.01    0.47    3184/3184        derivedbasis::Vmatsetup(potential*, double) [3]
+[2]     82.4    0.01    0.47    3184+2586816 derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+                0.00    0.30  194800/194800      derivedbasis::integrateVmat(potential*, double, double, int) [5]
+                0.03    0.10  194800/584400      derivedbasis::integrateVmat(potential*, double, double) [4]
+                0.03    0.00 7265200/7316950     std::operator+(std::complex<double> const&, std::complex<double> const&) [20]
+                0.01    0.00 4870000/5137530     std::operator-(std::complex<double> const&, std::complex<double> const&) [32]
+                0.00    0.00 4870000/4870024     std::complex<double> std::operator/<double>(std::complex<double> const&, double const&) [158]
+                0.00    0.00 4870000/4882051     double std::abs<double>(std::complex<double> const&) [156]
+                             2586816             derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+-----------------------------------------------
+                0.00    0.24    1592/3184        derivedbasis::updateHmat(potential*) [6]
+                0.00    0.24    1592/3184        globalbasis::setupVmats(potential*) [8]
+[3]     82.4    0.00    0.48    3184         derivedbasis::Vmatsetup(potential*, double) [3]
+                0.01    0.47    3184/3184        derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+-----------------------------------------------
+                0.03    0.10  194800/584400      derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+                0.06    0.19  389600/584400      derivedbasis::integrateVmat(potential*, double, double, int) [5]
+[4]     65.8    0.09    0.29  584400         derivedbasis::integrateVmat(potential*, double, double) [4]
+                0.00    0.12  584400/612490      derivedbasis::evalbasisfuncs(double) [10]
+                0.05    0.02 29220000/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.02    0.03  584400/2186356     initializearray(int) [9]
+                0.03    0.00 14610000/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.02    0.00 14610000/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00  584400/585992      potential::V(double) [160]
+-----------------------------------------------
+                0.00    0.30  194800/194800      derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+[5]     52.0    0.00    0.30  194800         derivedbasis::integrateVmat(potential*, double, double, int) [5]
+                0.06    0.19  389600/584400      derivedbasis::integrateVmat(potential*, double, double) [4]
+                0.03    0.00 9740000/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+                0.01    0.01  194800/2186356     initializearray(int) [9]
+-----------------------------------------------
+                0.00    0.24    1592/1592        globalbasis::updateHmats(potential*) [7]
+[6]     41.3    0.00    0.24    1592         derivedbasis::updateHmat(potential*) [6]
+                0.00    0.24    1592/3184        derivedbasis::Vmatsetup(potential*, double) [3]
+                0.00    0.00    1592/1592        derivedbasis::hmatsetup() [58]
+                0.00    0.00    1592/3184        derivedbasis::Vmatsetup(potential*) [197]
+-----------------------------------------------
+                0.00    0.24       2/2           main [1]
+[7]     41.3    0.00    0.24       2         globalbasis::updateHmats(potential*) [7]
+                0.00    0.24    1592/1592        derivedbasis::updateHmat(potential*) [6]
+-----------------------------------------------
+                0.00    0.24       2/2           main [1]
+[8]     41.2    0.00    0.24       2         globalbasis::setupVmats(potential*) [8]
+                0.00    0.24    1592/3184        derivedbasis::Vmatsetup(potential*, double) [3]
+                0.00    0.00    1592/3184        derivedbasis::Vmatsetup(potential*) [197]
+-----------------------------------------------
+                0.00    0.00       1/2186356     derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00       1/2186356     triD_basischange(int) [91]
+                0.00    0.00       1/2186356     globalbasis::Olappsi(std::complex<double>*) [69]
+                0.00    0.00       1/2186356     wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+                0.00    0.00       2/2186356     borderfunctionbasis(int) [78]
+                0.00    0.00       2/2186356     identitybasis(int) [86]
+                0.00    0.00       2/2186356     rightborderfunctionbasis_laguerre(int) [85]
+                0.00    0.00       2/2186356     leftborderfunctionbasis_laguerre(int) [84]
+                0.00    0.00       2/2186356     wf::wf(globalbasis*) [87]
+                0.00    0.00       4/2186356     temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       5/2186356     globalbasis::Oinvpsi(std::complex<double>*) [64]
+                0.00    0.00       8/2186356     leftbordervec(int) [81]
+                0.00    0.00       8/2186356     derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [71]
+                0.00    0.00       8/2186356     temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+                0.00    0.00       8/2186356     generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+                0.00    0.00       8/2186356     wf::temporalvector_rhstarget(int, std::complex<double>*, std::complex<double>* restrict*) [82]
+                0.00    0.00      10/2186356     wf::eigenvectortowf(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [80]
+                0.00    0.00      12/2186356     legendrebasis::legendrebasis(int) [75]
+                0.00    0.00      12/2186356     laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00      16/2186356     padeigenvectors(int, std::complex<double>*) [74]
+                0.00    0.00      20/2186356     wf::Upsi(int, std::complex<double>* restrict*) [72]
+                0.00    0.00      35/2186356     wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00      60/2186356     wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00    1204/2186356     derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00    3176/2186356     derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+                0.00    0.00    3190/2186356     wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00    9594/2186356     matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [55]
+                0.00    0.00   11940/2186356     derivedbasis::evalcoeffvector(std::complex<double>*, double) [45]
+                0.00    0.00   31840/2186356     wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00   50960/2186356     wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00   75620/2186356     wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+                0.01    0.01  194800/2186356     derivedbasis::integrateVmat(potential*, double, double, int) [5]
+                0.02    0.03  584400/2186356     derivedbasis::integrateVmat(potential*, double, double) [4]
+                0.02    0.03  606914/2186356     legendrebasis::evalbasisfuncs(double) [12]
+                0.03    0.03  612490/2186356     vector_basischange(int, int, std::complex<double>*, std::complex<double>*) [14]
+[9]     35.5    0.09    0.12 2186356         initializearray(int) [9]
+                0.08    0.04 30504379/30504411     zeroarray(std::complex<double>*, int) [11]
+-----------------------------------------------
+                0.00    0.00       5/612490      derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00     120/612490      temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00    3985/612490      wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   11940/612490      derivedbasis::evalcoeffvector(std::complex<double>*, double) [45]
+                0.00    0.00   12040/612490      derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.12  584400/612490      derivedbasis::integrateVmat(potential*, double, double) [4]
+[10]    22.2    0.00    0.13  612490         derivedbasis::evalbasisfuncs(double) [10]
+                0.00    0.07  606914/606914      legendrebasis::evalbasisfuncs(double) [12]
+                0.00    0.06  612490/612490      vector_basischange(int, int, std::complex<double>*, std::complex<double>*) [14]
+                0.00    0.00    5576/5576        laguerrebasis::evalbasisfuncs(double) [63]
+                0.00    0.00  606914/606914      legendrebasis::mapfromchildrange(double, double, double) [159]
+                0.00    0.00    5576/5576        laguerrebasis::mapfromchildrange(double, double, double) [190]
+-----------------------------------------------
+                0.00    0.00      12/30504411     temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00      20/30504411     wf::initialguess(int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [48]
+                0.08    0.04 30504379/30504411     initializearray(int) [9]
+[11]    20.0    0.08    0.04 30504411         zeroarray(std::complex<double>*, int) [11]
+                0.04    0.00 28382023/31578345     std::complex<double>::operator=(double) [18]
+-----------------------------------------------
+                0.00    0.07  606914/606914      derivedbasis::evalbasisfuncs(double) [10]
+[12]    12.2    0.00    0.07  606914         legendrebasis::evalbasisfuncs(double) [12]
+                0.02    0.03  606914/2186356     initializearray(int) [9]
+                0.01    0.00  606914/606914      legendrevalues(int, double) [33]
+                0.00    0.00 3034570/31578345     std::complex<double>::operator=(double) [18]
+-----------------------------------------------
+                0.00    0.00      10/29660139     ExpIwt(double, double) [93]
+                0.00    0.00      25/29660139     derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00    6000/29660139     temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00   12000/29660139     ecsX(double, double, double) [65]
+                0.00    0.00   59700/29660139     wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   60200/29660139     derivedbasis::ecsrotate(double, potential*, double, double) [42]
+                0.00    0.00  302204/29660139     derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.05    0.02 29220000/29660139     derivedbasis::integrateVmat(potential*, double, double) [4]
+[13]    12.0    0.05    0.02 29660139         std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.02    0.00 29660139/30363107     std::complex<double>::operator*=(double) [23]
+-----------------------------------------------
+                0.00    0.06  612490/612490      derivedbasis::evalbasisfuncs(double) [10]
+[14]     9.9    0.00    0.06  612490         vector_basischange(int, int, std::complex<double>*, std::complex<double>*) [14]
+                0.03    0.03  612490/2186356     initializearray(int) [9]
+-----------------------------------------------
+                0.00    0.05       1/1           wf::propagate_iterative_inhomogenous(double, double, double&, pulse*, potential*, wf*, double, double) [16]
+[15]     8.8    0.00    0.05       1         wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.05       1/1           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00      10/50          wf::nthcomponentsignificance(std::complex<double>* restrict*, int) [37]
+                0.00    0.00       1/1           wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+                0.00    0.00       1/1           wf::lastlegendrecomponentsignificance(int, double, std::complex<double>* restrict*) [56]
+                0.00    0.00       1/4           wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00       3/4           temporalbasis::updateTmats(double, double, pulse*) [61]
+                0.00    0.00       1/3           wf::psif(std::complex<double>* restrict*, int) [59]
+                0.00    0.00       1/1           temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       1/1           triD_basischange(int) [91]
+                0.00    0.00       2/59141       std::abs(double) [168]
+                0.00    0.00       1/4882051     double std::abs<double>(std::complex<double> const&) [156]
+                0.00    0.00       1/1           double const& std::min<double>(double const&, double const&) [236]
+                0.00    0.00       1/1595        derivedbasis::~derivedbasis() [202]
+                0.00    0.00       1/3           derivedbasis::~derivedbasis() [228]
+                0.00    0.00       1/3           temporalbasis::~temporalbasis() [229]
+-----------------------------------------------
+                0.00    0.05       1/1           main [1]
+[16]     8.8    0.00    0.05       1         wf::propagate_iterative_inhomogenous(double, double, double&, pulse*, potential*, wf*, double, double) [16]
+                0.00    0.05       1/1           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+-----------------------------------------------
+                                   1             wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.05       1/1           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+[17]     8.1    0.00    0.05       1+1       wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.03       2/2           wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [22]
+                0.00    0.01      10/10          wf::maxdelta(std::complex<double>* restrict*, int) [40]
+                0.00    0.01       8/8           wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00       5/19          wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+                0.00    0.00       2/2           wf::initialguess(int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [48]
+                0.00    0.00       2/2           wf::normsum_legendre(int, double, std::complex<double>* restrict*) [49]
+                0.00    0.00       2/4           wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00       2/63          globalbasis::norm(std::complex<double>*) [36]
+                0.00    0.00       2/3           wf::psif(std::complex<double>* restrict*, int) [59]
+                0.00    0.00      35/2186356     initializearray(int) [9]
+                0.00    0.00       4/4           wf::Upsi(int, std::complex<double>* restrict*) [72]
+                0.00    0.00       2/2           triD_Qmat(int) [89]
+                0.00    0.00       2/2           triD_Umat(int) [90]
+                0.00    0.00       4/4           wf::residualaction(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [92]
+                0.00    0.00       2/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00       8/8           wf::psixtdiff(std::complex<double>* restrict*, std::complex<double>* restrict*, int) [222]
+                0.00    0.00       4/50972       std::operator/(std::complex<double> const&, std::complex<double> const&) [170]
+                0.00    0.00       2/59141       std::abs(double) [168]
+                0.00    0.00       2/4882051     double std::abs<double>(std::complex<double> const&) [156]
+                0.00    0.00       2/25087       _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [184]
+                                   1             wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+-----------------------------------------------
+                0.00    0.00       5/31578345     wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00       8/31578345     leftbordervec(int) [81]
+                0.00    0.00      10/31578345     identitybasis(int) [86]
+                0.00    0.00      10/31578345     triD_basischange(int) [91]
+                0.00    0.00      12/31578345     borderfunctionbasis(int) [78]
+                0.00    0.00      18/31578345     rightborderfunctionbasis_laguerre(int) [85]
+                0.00    0.00      18/31578345     leftborderfunctionbasis_laguerre(int) [84]
+                0.00    0.00      50/31578345     triD_Qmat(int) [89]
+                0.00    0.00      50/31578345     triD_Umat(int) [90]
+                0.00    0.00      96/31578345     legendrebasis::legendrebasis(int) [75]
+                0.00    0.00    6195/31578345     globalbasis::boundstate(int, double&) [60]
+                0.00    0.00   27880/31578345     laguerrebasis::evallaguerrefuncs(double) [67]
+                0.00    0.00  127400/31578345     wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00 3034570/31578345     legendrebasis::evalbasisfuncs(double) [12]
+                0.04    0.00 28382023/31578345     zeroarray(std::complex<double>*, int) [11]
+[18]     6.9    0.04    0.00 31578345         std::complex<double>::operator=(double) [18]
+-----------------------------------------------
+                0.00    0.00      20/10106145     wf::residualaction(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [92]
+                0.00    0.00      25/10106145     derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00    3000/10106145     temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00    3980/10106145     globalbasis::Olappsi(std::complex<double>*) [69]
+                0.00    0.00   19900/10106145     wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   38220/10106145     wf::psif(std::complex<double>* restrict*, int) [59]
+                0.00    0.00  301000/10106145     derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.03    0.00 9740000/10106145     derivedbasis::integrateVmat(potential*, double, double, int) [5]
+[19]     5.2    0.03    0.00 10106145         std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+-----------------------------------------------
+                0.00    0.00      10/7316950     rightbordervec(int) [83]
+                0.00    0.00   11940/7316950     globalbasis::boundstate(int, double&) [60]
+                0.00    0.00   39800/7316950     derivedbasis::hmatsetup() [58]
+                0.03    0.00 7265200/7316950     derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+[20]     5.2    0.03    0.00 7316950         std::operator+(std::complex<double> const&, std::complex<double> const&) [20]
+-----------------------------------------------
+                0.00    0.00      25/15865421     derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00    3000/15865421     temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00   19900/15865421     wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   95520/15865421     wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00  127360/15865421     wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00  203776/15865421     wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+                0.00    0.00  203840/15865421     wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00  602000/15865421     derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.03    0.00 14610000/15865421     derivedbasis::integrateVmat(potential*, double, double) [4]
+[21]     5.2    0.03    0.00 15865421         std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+-----------------------------------------------
+                0.00    0.03       2/2           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[22]     4.4    0.00    0.03       2         wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [22]
+                0.00    0.02       2/2           wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [26]
+                0.00    0.01       2/2           wf::applydeltapsi_temporaleigenvectors(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [38]
+                0.00    0.00       4/4           padeigenvectors(int, std::complex<double>*) [74]
+                0.00    0.00       2/2           generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+-----------------------------------------------
+                0.00    0.00   27880/30363107     laguerrebasis::evalbasisfuncs(double) [63]
+                0.00    0.00   95520/30363107     wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00  579568/30363107     std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.02    0.00 29660139/30363107     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+[23]     3.4    0.02    0.00 30363107         std::complex<double>::operator*=(double) [23]
+-----------------------------------------------
+                0.00    0.00       2/16625107     wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00       2/16625107     wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [26]
+                0.00    0.00      10/16625107     identitybasis(int) [86]
+                0.00    0.00      10/16625107     triD_basischange(int) [91]
+                0.00    0.00      18/16625107     rightborderfunctionbasis_laguerre(int) [85]
+                0.00    0.00      18/16625107     leftborderfunctionbasis_laguerre(int) [84]
+                0.00    0.00      32/16625107     borderfunctionbasis(int) [78]
+                0.00    0.00      50/16625107     triD_Qmat(int) [89]
+                0.00    0.00      50/16625107     triD_Umat(int) [90]
+                0.00    0.00      64/16625107     padeigenvectors(int, std::complex<double>*) [74]
+                0.00    0.00      96/16625107     legendrebasis::legendrebasis(int) [75]
+                0.00    0.00     110/16625107     printmat(std::complex<double>*, int, int) [88]
+                0.00    0.00     200/16625107     generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+                0.00    0.00    3000/16625107     temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00    3000/16625107     laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00   23880/16625107     globalbasis::boundstate(int, double&) [60]
+                0.00    0.00   31840/16625107     wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00   39800/16625107     globalbasis::Oinvpsi(std::complex<double>*) [64]
+                0.00    0.00   63680/16625107     wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00   75620/16625107     wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+                0.00    0.00   79625/16625107     wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00  301000/16625107     derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00 1393000/16625107     transpose(std::complex<double>*, int, int) [30]
+                0.02    0.00 14610000/16625107     derivedbasis::integrateVmat(potential*, double, double) [4]
+[24]     3.4    0.02    0.00 16625107         arrayindx(int, int, int, int) [24]
+-----------------------------------------------
+                                                 <spontaneous>
+[25]     3.4    0.02    0.00                 __intel_new_memset [25]
+-----------------------------------------------
+                0.00    0.02       2/2           wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [22]
+[26]     3.1    0.00    0.02       2         wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [26]
+                0.01    0.01       8/8           wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00       8/8           wf::temporalvector_rhstarget(int, std::complex<double>*, std::complex<double>* restrict*) [82]
+                0.00    0.00       2/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00      24/114         triD_U(int, int) [209]
+                0.00    0.00      24/4870024     std::complex<double> std::operator/<double>(std::complex<double> const&, double const&) [158]
+-----------------------------------------------
+                0.01    0.01       8/8           wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [26]
+[27]     3.1    0.01    0.01       8         wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00   50960/2186356     initializearray(int) [9]
+                0.00    0.00    6368/27860       transpose(std::complex<double>*, int, int) [30]
+                0.00    0.00   95520/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00  127360/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.00    0.00   63680/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00   31840/129257      std::operator-(std::complex<double> const&) [161]
+                0.00    0.00   31840/51740       bandarrayindx(int, int, int, int, int) [169]
+-----------------------------------------------
+                               38220             globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+                0.01    0.01       2/2           main [1]
+[28]     3.0    0.01    0.01       2+38220   globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+                0.00    0.01       2/2           globalbasis::ecssetup(int, double, potential*) [43]
+                0.00    0.00    1588/1588        derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+                0.00    0.00       4/4           laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00       4/4           derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [71]
+                0.00    0.00       2/2           temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+                0.00    0.00       4/4           legendrebasis::legendrebasis(int) [75]
+                0.00    0.00       2/2           borderfunctionbasis(int) [78]
+                0.00    0.00       2/2           rightborderfunctionbasis_laguerre(int) [85]
+                0.00    0.00       2/2           leftborderfunctionbasis_laguerre(int) [84]
+                0.00    0.00       2/2           identitybasis(int) [86]
+                0.00    0.00       4/59141       std::abs(double) [168]
+                0.00    0.00       2/4           globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&, bool) [223]
+                0.00    0.00       2/2           globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&) [230]
+                               38220             globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+-----------------------------------------------
+                0.00    0.00       4/19          wf::initialguess(int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [48]
+                0.00    0.00       5/19          wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.01      10/19          wf::applydeltapsi(int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [39]
+[29]     2.4    0.00    0.01      19         wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+                0.00    0.00   75620/2186356     initializearray(int) [9]
+                0.01    0.00   15124/27860       transpose(std::complex<double>*, int, int) [30]
+                0.00    0.00  203776/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00  273028/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.00    0.00   75620/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00   75620/101888      derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*) [162]
+                0.00    0.00   46168/129257      std::operator-(std::complex<double> const&) [161]
+-----------------------------------------------
+                              696500             transpose(std::complex<double>*, int, int) [30]
+                0.00    0.00    6368/27860       wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00    6368/27860       wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.01    0.00   15124/27860       wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+[30]     2.0    0.01    0.00   27860+696500  transpose(std::complex<double>*, int, int) [30]
+                0.00    0.00 1393000/16625107     arrayindx(int, int, int, int) [24]
+                              696500             transpose(std::complex<double>*, int, int) [30]
+-----------------------------------------------
+                                                 <spontaneous>
+[31]     1.7    0.01    0.00                 hypot.L [31]
+-----------------------------------------------
+                0.00    0.00      10/5137530     leftbordervec(int) [81]
+                0.00    0.00   63680/5137530     wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00  203840/5137530     wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.01    0.00 4870000/5137530     derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+[32]     1.7    0.01    0.00 5137530         std::operator-(std::complex<double> const&, std::complex<double> const&) [32]
+-----------------------------------------------
+                0.01    0.00  606914/606914      legendrebasis::evalbasisfuncs(double) [12]
+[33]     1.7    0.01    0.00  606914         legendrevalues(int, double) [33]
+-----------------------------------------------
+                              300888             derivedbasis::innerproduct(std::complex<double>*, std::complex<double>*) [34]
+                0.01    0.00   50148/50148       globalbasis::innerproduct(std::complex<double>*, std::complex<double>*) [35]
+[34]     1.7    0.01    0.00   50148+300888  derivedbasis::innerproduct(std::complex<double>*, std::complex<double>*) [34]
+                              300888             derivedbasis::innerproduct(std::complex<double>*, std::complex<double>*) [34]
+-----------------------------------------------
+                0.00    0.01      63/63          globalbasis::norm(std::complex<double>*) [36]
+[35]     1.7    0.00    0.01      63         globalbasis::innerproduct(std::complex<double>*, std::complex<double>*) [35]
+                0.01    0.00   50148/50148       derivedbasis::innerproduct(std::complex<double>*, std::complex<double>*) [34]
+-----------------------------------------------
+                0.00    0.00       1/63          wf::lastlegendrecomponentsignificance(int, double, std::complex<double>* restrict*) [56]
+                0.00    0.00       2/63          wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00      10/63          wf::normsum_legendre(int, double, std::complex<double>* restrict*) [49]
+                0.00    0.01      50/63          wf::nthcomponentsignificance(std::complex<double>* restrict*, int) [37]
+[36]     1.7    0.00    0.01      63         globalbasis::norm(std::complex<double>*) [36]
+                0.00    0.01      63/63          globalbasis::innerproduct(std::complex<double>*, std::complex<double>*) [35]
+-----------------------------------------------
+                0.00    0.00      10/50          wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.01      40/50          wf::maxdelta(std::complex<double>* restrict*, int) [40]
+[37]     1.4    0.00    0.01      50         wf::nthcomponentsignificance(std::complex<double>* restrict*, int) [37]
+                0.00    0.01      50/63          globalbasis::norm(std::complex<double>*) [36]
+                0.00    0.00      50/59141       std::abs(double) [168]
+-----------------------------------------------
+                0.00    0.01       2/2           wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [22]
+[38]     1.3    0.00    0.01       2         wf::applydeltapsi_temporaleigenvectors(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [38]
+                0.00    0.01       2/2           wf::applydeltapsi(int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [39]
+                0.00    0.00       2/2           wf::eigenvectortowf(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [80]
+-----------------------------------------------
+                0.00    0.01       2/2           wf::applydeltapsi_temporaleigenvectors(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [38]
+[39]     1.3    0.00    0.01       2         wf::applydeltapsi(int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [39]
+                0.00    0.01      10/19          wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+-----------------------------------------------
+                0.00    0.01      10/10          wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[40]     1.1    0.00    0.01      10         wf::maxdelta(std::complex<double>* restrict*, int) [40]
+                0.00    0.01      40/50          wf::nthcomponentsignificance(std::complex<double>* restrict*, int) [37]
+-----------------------------------------------
+                0.00    0.01       8/8           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[41]     1.1    0.00    0.01       8         wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00   31840/2186356     initializearray(int) [9]
+                0.00    0.00    6368/27860       transpose(std::complex<double>*, int, int) [30]
+                0.00    0.00  127360/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00   63680/5137530     std::operator-(std::complex<double> const&, std::complex<double> const&) [32]
+                0.00    0.00   95520/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.00    0.00   95520/30363107     std::complex<double>::operator*=(double) [23]
+                0.00    0.00   31840/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00   25472/101888      derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*) [162]
+-----------------------------------------------
+                0.00    0.01    1204/1204        globalbasis::ecssetup(int, double, potential*) [43]
+[42]     1.0    0.00    0.01    1204         derivedbasis::ecsrotate(double, potential*, double, double) [42]
+                0.00    0.01    1204/1204        derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00   60200/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.00    0.00   60200/93309       std::complex<double> std::exp<double>(std::complex<double> const&) [164]
+                0.00    0.00   60200/80100       std::complex<double>& std::complex<double>::operator*=<double>(std::complex<double> const&) [165]
+                0.00    0.00   30100/129257      std::operator-(std::complex<double> const&) [161]
+-----------------------------------------------
+                0.00    0.01       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[43]     1.0    0.00    0.01       2         globalbasis::ecssetup(int, double, potential*) [43]
+                0.00    0.01    1204/1204        derivedbasis::ecsrotate(double, potential*, double, double) [42]
+-----------------------------------------------
+                0.00    0.01    1204/1204        derivedbasis::ecsrotate(double, potential*, double, double) [42]
+[44]     1.0    0.00    0.01    1204         derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00   12040/612490      derivedbasis::evalbasisfuncs(double) [10]
+                0.00    0.00  602000/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00  301000/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+                0.00    0.00  302204/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.00    0.00  301000/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00    1204/2186356     initializearray(int) [9]
+                0.00    0.00   12040/12040       potential::Vecs(double, double, double) [66]
+                0.00    0.00    1204/4394        derivedbasis::integrationtable(int) [192]
+                0.00    0.00    1204/129257      std::operator-(std::complex<double> const&) [161]
+                0.00    0.00    1204/93309       std::complex<double> std::exp<double>(std::complex<double> const&) [164]
+                0.00    0.00    1204/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+-----------------------------------------------
+                0.00    0.00   11940/11940       derivedbasis::printstr(int, std::complex<double>*) [46]
+[45]     0.6    0.00    0.00   11940         derivedbasis::evalcoeffvector(std::complex<double>*, double) [45]
+                0.00    0.00   11940/612490      derivedbasis::evalbasisfuncs(double) [10]
+                0.00    0.00   11940/2186356     initializearray(int) [9]
+-----------------------------------------------
+                0.00    0.00    2388/2388        wf::printstr() [47]
+[46]     0.6    0.00    0.00    2388         derivedbasis::printstr(int, std::complex<double>*) [46]
+                0.00    0.00   11940/11940       derivedbasis::evalcoeffvector(std::complex<double>*, double) [45]
+                0.00    0.00   35820/35820       std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [180]
+                0.00    0.00   35820/35820       std::to_string(double) [181]
+                0.00    0.00   35820/35821       std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*) [179]
+                0.00    0.00   23880/23880       std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [185]
+                0.00    0.00    2388/4394        derivedbasis::integrationtable(int) [192]
+-----------------------------------------------
+                0.00    0.00       1/3           wf::boundstatesetup(int, double&) [52]
+                0.00    0.00       2/3           main [1]
+[47]     0.6    0.00    0.00       3         wf::printstr() [47]
+                0.00    0.00    2388/2388        derivedbasis::printstr(int, std::complex<double>*) [46]
+                0.00    0.00    2388/2388        derivedbasis::printstr(std::complex<double>*) [198]
+-----------------------------------------------
+                0.00    0.00       2/2           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[48]     0.5    0.00    0.00       2         wf::initialguess(int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [48]
+                0.00    0.00       4/19          wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+                0.00    0.00      20/30504411     zeroarray(std::complex<double>*, int) [11]
+-----------------------------------------------
+                0.00    0.00       2/2           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[49]     0.3    0.00    0.00       2         wf::normsum_legendre(int, double, std::complex<double>* restrict*) [49]
+                0.00    0.00      10/63          globalbasis::norm(std::complex<double>*) [36]
+                0.00    0.00      10/59141       std::abs(double) [168]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+[50]     0.3    0.00    0.00       1         wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+                0.00    0.00       1/1           wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00       1/1           globalbasis::Olappsi(std::complex<double>*) [69]
+                0.00    0.00       1/1           derivedbasis::funcvector(std::complex<double> (*)(double, double), double) [76]
+                0.00    0.00       1/2186356     initializearray(int) [9]
+                0.00    0.00       2/6           printmat(std::complex<double>*, int, int) [88]
+                0.00    0.00       5/45          arraymultiply(std::complex<double>*, int, std::complex<double>) [214]
+                0.00    0.00       5/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+-----------------------------------------------
+                               15930             wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00       1/1           wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+[51]     0.3    0.00    0.00       1+15930   wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00    3985/612490      derivedbasis::evalbasisfuncs(double) [10]
+                0.00    0.00    3190/2186356     initializearray(int) [9]
+                0.00    0.00   59700/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.00    0.00   79625/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00   19900/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+                0.00    0.00       5/5           globalbasis::Oinvpsi(std::complex<double>*) [64]
+                0.00    0.00   19900/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00   19900/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.00    0.00       5/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00   19900/129257      std::operator-(std::complex<double> const&) [161]
+                0.00    0.00   19900/93309       std::complex<double> std::exp<double>(std::complex<double> const&) [164]
+                0.00    0.00   19900/80100       std::complex<double>& std::complex<double>::operator*=<double>(std::complex<double> const&) [165]
+                0.00    0.00    3185/3185        basis::oinvpsi(std::complex<double>*) [196]
+                0.00    0.00     797/4394        derivedbasis::integrationtable(int) [192]
+                0.00    0.00       5/85          pulse::Az(double) [210]
+                               15930             wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[52]     0.2    0.00    0.00       1         wf::boundstatesetup(int, double&) [52]
+                0.00    0.00       1/3           wf::printstr() [47]
+                0.00    0.00       1/1           globalbasis::boundstate(int, double&) [60]
+                0.00    0.00       1/1           wf::boundstate(int, double&) [234]
+-----------------------------------------------
+                0.00    0.00    1588/1588        globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[53]     0.2    0.00    0.00    1588         derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+                0.00    0.00    4764/4797        matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [55]
+                0.00    0.00    3176/2186356     initializearray(int) [9]
+                0.00    0.00    3176/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+                0.00    0.00    1588/1603        basis::basis() [200]
+                0.00    0.00    1588/1603        basis::basis() [201]
+                0.00    0.00    1588/8036        arraycopy(std::complex<double>*, int) [188]
+                0.00    0.00    1588/1595        std::complex<double> std::operator/<double>(double const&, std::complex<double> const&) [203]
+-----------------------------------------------
+                0.00    0.00       1/4           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.00       1/4           wf::lastlegendrecomponentsignificance(int, double, std::complex<double>* restrict*) [56]
+                0.00    0.00       2/4           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[54]     0.2    0.00    0.00       4         wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00  203840/5137530     std::operator-(std::complex<double> const&, std::complex<double> const&) [32]
+                0.00    0.00  203840/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00  127400/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      60/2186356     initializearray(int) [9]
+                0.00    0.00   76440/78035       std::complex<double>& std::complex<double>::operator/=<double>(std::complex<double> const&) [166]
+                0.00    0.00   50960/50972       std::operator/(std::complex<double> const&, std::complex<double> const&) [170]
+                0.00    0.00      20/8036        arraycopy(std::complex<double>*, int) [188]
+-----------------------------------------------
+                0.00    0.00       3/4797        temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       6/4797        temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+                0.00    0.00      12/4797        derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [71]
+                0.00    0.00      12/4797        temporalbasis::updateTmats(double, double, pulse*) [61]
+                0.00    0.00    4764/4797        derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+[55]     0.2    0.00    0.00    4797         matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [55]
+                0.00    0.00    9594/2186356     initializearray(int) [9]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+[56]     0.1    0.00    0.00       1         wf::lastlegendrecomponentsignificance(int, double, std::complex<double>* restrict*) [56]
+                0.00    0.00       1/4           wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00       1/63          globalbasis::norm(std::complex<double>*) [36]
+                0.00    0.00       1/59141       std::abs(double) [168]
+-----------------------------------------------
+                0.00    0.00      10/579568      leftbordervec(int) [81]
+                0.00    0.00      10/579568      rightbordervec(int) [83]
+                0.00    0.00   11940/579568      globalbasis::boundstate(int, double&) [60]
+                0.00    0.00   12000/579568      ecsX(double, double, double) [65]
+                0.00    0.00   19900/579568      wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   39800/579568      derivedbasis::hmatsetup() [58]
+                0.00    0.00   95520/579568      wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00  127360/579568      wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00  273028/579568      wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+[57]     0.1    0.00    0.00  579568         std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.00    0.00  579568/30363107     std::complex<double>::operator*=(double) [23]
+-----------------------------------------------
+                               39800             derivedbasis::hmatsetup() [58]
+                0.00    0.00    1592/1592        derivedbasis::updateHmat(potential*) [6]
+[58]     0.0    0.00    0.00    1592+39800   derivedbasis::hmatsetup() [58]
+                0.00    0.00   39800/7316950     std::operator+(std::complex<double> const&, std::complex<double> const&) [20]
+                0.00    0.00   39800/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                               39800             derivedbasis::hmatsetup() [58]
+-----------------------------------------------
+                                9555             wf::psif(std::complex<double>* restrict*, int) [59]
+                0.00    0.00       1/3           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.00       2/3           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[59]     0.0    0.00    0.00       3+9555    wf::psif(std::complex<double>* restrict*, int) [59]
+                0.00    0.00   38220/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+                                9555             wf::psif(std::complex<double>* restrict*, int) [59]
+-----------------------------------------------
+                                3185             globalbasis::boundstate(int, double&) [60]
+                0.00    0.00       1/1           wf::boundstatesetup(int, double&) [52]
+[60]     0.0    0.00    0.00       1+3185    globalbasis::boundstate(int, double&) [60]
+                0.00    0.00   11940/7316950     std::operator+(std::complex<double> const&, std::complex<double> const&) [20]
+                0.00    0.00   23880/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00   11940/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.00    0.00    6195/31578345     std::complex<double>::operator=(double) [18]
+                                3185             globalbasis::boundstate(int, double&) [60]
+-----------------------------------------------
+                0.00    0.00       1/4           temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       3/4           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+[61]     0.0    0.00    0.00       4         temporalbasis::updateTmats(double, double, pulse*) [61]
+                0.00    0.00       4/4           temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00      12/4797        matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [55]
+                0.00    0.00       8/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+                0.00    0.00       4/1595        std::complex<double> std::operator/<double>(double const&, std::complex<double> const&) [203]
+-----------------------------------------------
+                0.00    0.00       4/4           temporalbasis::updateTmats(double, double, pulse*) [61]
+[62]     0.0    0.00    0.00       4         temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00     120/612490      derivedbasis::evalbasisfuncs(double) [10]
+                0.00    0.00    6000/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.00    0.00    3000/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+                0.00    0.00    3000/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00    3000/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00      12/30504411     zeroarray(std::complex<double>*, int) [11]
+                0.00    0.00      80/85          pulse::Az(double) [210]
+                0.00    0.00      40/40          pulse::Ez(double) [217]
+                0.00    0.00       4/4394        derivedbasis::integrationtable(int) [192]
+-----------------------------------------------
+                0.00    0.00    5576/5576        derivedbasis::evalbasisfuncs(double) [10]
+[63]     0.0    0.00    0.00    5576         laguerrebasis::evalbasisfuncs(double) [63]
+                0.00    0.00    5576/5576        laguerrebasis::evallaguerrefuncs(double) [67]
+                0.00    0.00   27880/30363107     std::complex<double>::operator*=(double) [23]
+                0.00    0.00   33456/59141       std::abs(double) [168]
+-----------------------------------------------
+                0.00    0.00       5/5           wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+[64]     0.0    0.00    0.00       5         globalbasis::Oinvpsi(std::complex<double>*) [64]
+                0.00    0.00   39800/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00       5/2186356     initializearray(int) [9]
+                0.00    0.00   19900/51740       bandarrayindx(int, int, int, int, int) [169]
+                0.00    0.00       5/8036        arraycopy(std::complex<double>*, int) [188]
+-----------------------------------------------
+                0.00    0.00   12040/12040       potential::Vecs(double, double, double) [66]
+[65]     0.0    0.00    0.00   12040         ecsX(double, double, double) [65]
+                0.00    0.00   12000/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.00    0.00   12000/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                0.00    0.00   12040/59141       std::abs(double) [168]
+                0.00    0.00   12000/93309       std::complex<double> std::exp<double>(std::complex<double> const&) [164]
+                0.00    0.00   12000/12000       std::complex<double> std::operator+<double>(double const&, std::complex<double> const&) [187]
+-----------------------------------------------
+                0.00    0.00   12040/12040       derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+[66]     0.0    0.00    0.00   12040         potential::Vecs(double, double, double) [66]
+                0.00    0.00   12040/12040       ecsX(double, double, double) [65]
+                0.00    0.00   24080/25087       _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [184]
+                0.00    0.00   12040/4882051     double std::abs<double>(std::complex<double> const&) [156]
+-----------------------------------------------
+                0.00    0.00    5576/5576        laguerrebasis::evalbasisfuncs(double) [63]
+[67]     0.0    0.00    0.00    5576         laguerrebasis::evallaguerrefuncs(double) [67]
+                0.00    0.00   27880/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00   27880/27928       _ZSt3powIiiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [183]
+                0.00    0.00    5576/5696        laguerrevalues(int, double) [189]
+                0.00    0.00    5576/59141       std::abs(double) [168]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+[68]     0.0    0.00    0.00       1         temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       1/4           temporalbasis::updateTmats(double, double, pulse*) [61]
+                0.00    0.00       3/4797        matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [55]
+                0.00    0.00       4/2186356     initializearray(int) [9]
+                0.00    0.00       2/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+                0.00    0.00       1/3           derivedbasis::derivedbasis() [226]
+                0.00    0.00       1/3           derivedbasis::derivedbasis() [227]
+                0.00    0.00       1/8036        arraycopy(std::complex<double>*, int) [188]
+                0.00    0.00       1/1595        std::complex<double> std::operator/<double>(double const&, std::complex<double> const&) [203]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+[69]     0.0    0.00    0.00       1         globalbasis::Olappsi(std::complex<double>*) [69]
+                0.00    0.00    3980/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+                0.00    0.00       1/2186356     initializearray(int) [9]
+                0.00    0.00     796/101888      derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*) [162]
+                0.00    0.00     796/796         derivedbasis::Olappsi(std::complex<double>*) [208]
+-----------------------------------------------
+                0.00    0.00       4/4           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[70]     0.0    0.00    0.00       4         laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00    3000/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00      12/2186356     initializearray(int) [9]
+                0.00    0.00       4/6           printmat(std::complex<double>*, int, int) [88]
+                0.00    0.00    2000/14000       std::complex<double>::operator+=(double) [186]
+                0.00    0.00    1000/1000        std::complex<double>::operator-=(double) [205]
+                0.00    0.00     120/5696        laguerrevalues(int, double) [189]
+                0.00    0.00      80/80          laguerrederivs(int, int, int, double) [211]
+                0.00    0.00       8/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+                0.00    0.00       4/1603        basis::basis() [200]
+                0.00    0.00       4/1603        basis::basis() [201]
+                0.00    0.00       4/16          laguerretable(int, double*, double*) [219]
+-----------------------------------------------
+                0.00    0.00       4/4           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[71]     0.0    0.00    0.00       4         derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [71]
+                0.00    0.00      12/4797        matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [55]
+                0.00    0.00       8/2186356     initializearray(int) [9]
+                0.00    0.00       4/1603        basis::basis() [200]
+                0.00    0.00       4/1603        basis::basis() [201]
+                0.00    0.00       4/8036        arraycopy(std::complex<double>*, int) [188]
+-----------------------------------------------
+                0.00    0.00       4/4           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[72]     0.0    0.00    0.00       4         wf::Upsi(int, std::complex<double>* restrict*) [72]
+                0.00    0.00      20/2186356     initializearray(int) [9]
+                0.00    0.00      40/114         triD_U(int, int) [209]
+-----------------------------------------------
+                0.00    0.00       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[73]     0.0    0.00    0.00       2         temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+                0.00    0.00       6/4797        matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [55]
+                0.00    0.00       8/2186356     initializearray(int) [9]
+                0.00    0.00       4/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+                0.00    0.00       2/3           derivedbasis::derivedbasis() [226]
+                0.00    0.00       2/3           derivedbasis::derivedbasis() [227]
+                0.00    0.00       2/8036        arraycopy(std::complex<double>*, int) [188]
+                0.00    0.00       2/1595        std::complex<double> std::operator/<double>(double const&, std::complex<double> const&) [203]
+-----------------------------------------------
+                0.00    0.00       4/4           wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [22]
+[74]     0.0    0.00    0.00       4         padeigenvectors(int, std::complex<double>*) [74]
+                0.00    0.00      16/2186356     initializearray(int) [9]
+                0.00    0.00      64/16625107     arrayindx(int, int, int, int) [24]
+-----------------------------------------------
+                0.00    0.00       4/4           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[75]     0.0    0.00    0.00       4         legendrebasis::legendrebasis(int) [75]
+                0.00    0.00      12/2186356     initializearray(int) [9]
+                0.00    0.00      96/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      96/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00       4/1603        basis::basis() [200]
+                0.00    0.00       4/1603        basis::basis() [201]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+[76]     0.0    0.00    0.00       1         derivedbasis::funcvector(std::complex<double> (*)(double, double), double) [76]
+                0.00    0.00       1/1           derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00       1/8036        arraycopy(std::complex<double>*, int) [188]
+-----------------------------------------------
+                0.00    0.00       1/1           derivedbasis::funcvector(std::complex<double> (*)(double, double), double) [76]
+[77]     0.0    0.00    0.00       1         derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00       5/612490      derivedbasis::evalbasisfuncs(double) [10]
+                0.00    0.00       1/2186356     initializearray(int) [9]
+                0.00    0.00      25/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+                0.00    0.00      25/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.00    0.00      25/15865421     std::operator*(std::complex<double> const&, std::complex<double> const&) [21]
+                0.00    0.00       5/5           ExpIwt(double, double) [93]
+                0.00    0.00       1/4394        derivedbasis::integrationtable(int) [192]
+-----------------------------------------------
+                0.00    0.00       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[78]     0.0    0.00    0.00       2         borderfunctionbasis(int) [78]
+                0.00    0.00       2/2           rightbordervec(int) [83]
+                0.00    0.00       2/6           leftbordervec(int) [81]
+                0.00    0.00       2/2186356     initializearray(int) [9]
+                0.00    0.00      32/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00      12/31578345     std::complex<double>::operator=(double) [18]
+-----------------------------------------------
+                                 226             generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+                0.00    0.00       2/2           wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [22]
+[79]     0.0    0.00    0.00       2+226     generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+                0.00    0.00       8/2186356     initializearray(int) [9]
+                0.00    0.00     200/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00      64/4870088     std::complex<double>::operator/=(double) [157]
+                0.00    0.00       8/50972       std::operator/(std::complex<double> const&, std::complex<double> const&) [170]
+                0.00    0.00       8/4882051     double std::abs<double>(std::complex<double> const&) [156]
+                                 226             generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+-----------------------------------------------
+                0.00    0.00       2/2           wf::applydeltapsi_temporaleigenvectors(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [38]
+[80]     0.0    0.00    0.00       2         wf::eigenvectortowf(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [80]
+                0.00    0.00      10/2186356     initializearray(int) [9]
+-----------------------------------------------
+                                  14             leftbordervec(int) [81]
+                0.00    0.00       2/6           borderfunctionbasis(int) [78]
+                0.00    0.00       4/6           rightbordervec(int) [83]
+[81]     0.0    0.00    0.00       6+14      leftbordervec(int) [81]
+                0.00    0.00       8/2186356     initializearray(int) [9]
+                0.00    0.00      10/5137530     std::operator-(std::complex<double> const&, std::complex<double> const&) [32]
+                0.00    0.00       8/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      10/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                                  14             leftbordervec(int) [81]
+-----------------------------------------------
+                0.00    0.00       8/8           wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [26]
+[82]     0.0    0.00    0.00       8         wf::temporalvector_rhstarget(int, std::complex<double>*, std::complex<double>* restrict*) [82]
+                0.00    0.00       8/2186356     initializearray(int) [9]
+                0.00    0.00      32/32          std::conj(std::complex<double> const&) [218]
+-----------------------------------------------
+                                  10             rightbordervec(int) [83]
+                0.00    0.00       2/2           borderfunctionbasis(int) [78]
+[83]     0.0    0.00    0.00       2+10      rightbordervec(int) [83]
+                0.00    0.00       4/6           leftbordervec(int) [81]
+                0.00    0.00      10/7316950     std::operator+(std::complex<double> const&, std::complex<double> const&) [20]
+                0.00    0.00      10/579568      std::complex<double> std::operator*<double>(double const&, std::complex<double> const&) [57]
+                                  10             rightbordervec(int) [83]
+-----------------------------------------------
+                0.00    0.00       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[84]     0.0    0.00    0.00       2         leftborderfunctionbasis_laguerre(int) [84]
+                0.00    0.00       2/2186356     initializearray(int) [9]
+                0.00    0.00      18/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      18/16625107     arrayindx(int, int, int, int) [24]
+-----------------------------------------------
+                0.00    0.00       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[85]     0.0    0.00    0.00       2         rightborderfunctionbasis_laguerre(int) [85]
+                0.00    0.00       2/2186356     initializearray(int) [9]
+                0.00    0.00      18/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      18/16625107     arrayindx(int, int, int, int) [24]
+-----------------------------------------------
+                0.00    0.00       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[86]     0.0    0.00    0.00       2         identitybasis(int) [86]
+                0.00    0.00       2/2186356     initializearray(int) [9]
+                0.00    0.00      10/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      10/16625107     arrayindx(int, int, int, int) [24]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[87]     0.0    0.00    0.00       2         wf::wf(globalbasis*) [87]
+                0.00    0.00       2/2186356     initializearray(int) [9]
+-----------------------------------------------
+                0.00    0.00       2/6           wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+                0.00    0.00       4/6           laguerrebasis::laguerrebasis(int, double) [70]
+[88]     0.0    0.00    0.00       6         printmat(std::complex<double>*, int, int) [88]
+                0.00    0.00     110/16625107     arrayindx(int, int, int, int) [24]
+-----------------------------------------------
+                                  50             triD_Qmat(int) [89]
+                0.00    0.00       2/2           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[89]     0.0    0.00    0.00       2+50      triD_Qmat(int) [89]
+                0.00    0.00      50/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      50/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00      50/50          triD_Q(int, int) [213]
+                                  50             triD_Qmat(int) [89]
+-----------------------------------------------
+                                  50             triD_Umat(int) [90]
+                0.00    0.00       2/2           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[90]     0.0    0.00    0.00       2+50      triD_Umat(int) [90]
+                0.00    0.00      50/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      50/16625107     arrayindx(int, int, int, int) [24]
+                0.00    0.00      50/114         triD_U(int, int) [209]
+                                  50             triD_Umat(int) [90]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+[91]     0.0    0.00    0.00       1         triD_basischange(int) [91]
+                0.00    0.00       1/2186356     initializearray(int) [9]
+                0.00    0.00      10/31578345     std::complex<double>::operator=(double) [18]
+                0.00    0.00      10/16625107     arrayindx(int, int, int, int) [24]
+-----------------------------------------------
+                0.00    0.00       4/4           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[92]     0.0    0.00    0.00       4         wf::residualaction(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [92]
+                0.00    0.00      20/10106145     std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&) [19]
+-----------------------------------------------
+                0.00    0.00       5/5           derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+[93]     0.0    0.00    0.00       5         ExpIwt(double, double) [93]
+                0.00    0.00      10/29660139     std::complex<double> std::operator*<double>(std::complex<double> const&, double const&) [13]
+                0.00    0.00       5/129257      std::operator-(std::complex<double> const&) [161]
+                0.00    0.00       5/93309       std::complex<double> std::exp<double>(std::complex<double> const&) [164]
+-----------------------------------------------
+                0.00    0.00 4882051/4882051     double std::abs<double>(std::complex<double> const&) [156]
+[155]    0.0    0.00    0.00 4882051         std::__complex_abs(doublecomplex ) [155]
+-----------------------------------------------
+                0.00    0.00       1/4882051     wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.00       2/4882051     wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00       8/4882051     generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+                0.00    0.00   12040/4882051     potential::Vecs(double, double, double) [66]
+                0.00    0.00 4870000/4882051     derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+[156]    0.0    0.00    0.00 4882051         double std::abs<double>(std::complex<double> const&) [156]
+                0.00    0.00 4882051/4882051     std::__complex_abs(doublecomplex ) [155]
+-----------------------------------------------
+                0.00    0.00      64/4870088     generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+                0.00    0.00 4870024/4870088     std::complex<double> std::operator/<double>(std::complex<double> const&, double const&) [158]
+[157]    0.0    0.00    0.00 4870088         std::complex<double>::operator/=(double) [157]
+-----------------------------------------------
+                0.00    0.00      24/4870024     wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [26]
+                0.00    0.00 4870000/4870024     derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [2]
+[158]    0.0    0.00    0.00 4870024         std::complex<double> std::operator/<double>(std::complex<double> const&, double const&) [158]
+                0.00    0.00 4870024/4870088     std::complex<double>::operator/=(double) [157]
+-----------------------------------------------
+                0.00    0.00  606914/606914      derivedbasis::evalbasisfuncs(double) [10]
+[159]    0.0    0.00    0.00  606914         legendrebasis::mapfromchildrange(double, double, double) [159]
+-----------------------------------------------
+                0.00    0.00    1592/585992      globalbasis::nextdx(potential*, pulse*, double, double, double, double, double) [204]
+                0.00    0.00  584400/585992      derivedbasis::integrateVmat(potential*, double, double) [4]
+[160]    0.0    0.00    0.00  585992         potential::V(double) [160]
+-----------------------------------------------
+                0.00    0.00       5/129257      ExpIwt(double, double) [93]
+                0.00    0.00      40/129257      arraydiff(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [216]
+                0.00    0.00    1204/129257      derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00   19900/129257      wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   30100/129257      derivedbasis::ecsrotate(double, potential*, double, double) [42]
+                0.00    0.00   31840/129257      wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+                0.00    0.00   46168/129257      wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+[161]    0.0    0.00    0.00  129257         std::operator-(std::complex<double> const&) [161]
+-----------------------------------------------
+                              509440             derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*) [162]
+                0.00    0.00     796/101888      globalbasis::Olappsi(std::complex<double>*) [69]
+                0.00    0.00   25472/101888      wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [41]
+                0.00    0.00   75620/101888      wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [29]
+[162]    0.0    0.00    0.00  101888+509440  derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*) [162]
+                              509440             derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*) [162]
+-----------------------------------------------
+                0.00    0.00   93309/93309       std::complex<double> std::exp<double>(std::complex<double> const&) [164]
+[163]    0.0    0.00    0.00   93309         std::__complex_exp(doublecomplex ) [163]
+-----------------------------------------------
+                0.00    0.00       5/93309       ExpIwt(double, double) [93]
+                0.00    0.00    1204/93309       derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00   12000/93309       ecsX(double, double, double) [65]
+                0.00    0.00   19900/93309       wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   60200/93309       derivedbasis::ecsrotate(double, potential*, double, double) [42]
+[164]    0.0    0.00    0.00   93309         std::complex<double> std::exp<double>(std::complex<double> const&) [164]
+                0.00    0.00   93309/93309       std::__complex_exp(doublecomplex ) [163]
+-----------------------------------------------
+                0.00    0.00   19900/80100       wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00   60200/80100       derivedbasis::ecsrotate(double, potential*, double, double) [42]
+[165]    0.0    0.00    0.00   80100         std::complex<double>& std::complex<double>::operator*=<double>(std::complex<double> const&) [165]
+-----------------------------------------------
+                0.00    0.00    1595/78035       std::complex<double> std::operator/<double>(double const&, std::complex<double> const&) [203]
+                0.00    0.00   76440/78035       wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+[166]    0.0    0.00    0.00   78035         std::complex<double>& std::complex<double>::operator/=<double>(std::complex<double> const&) [166]
+-----------------------------------------------
+                0.00    0.00       1/59702       std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [238]
+                0.00    0.00   23880/59702       std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [185]
+                0.00    0.00   35821/59702       std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*) [179]
+[167]    0.0    0.00    0.00   59702         std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&&&) [167]
+-----------------------------------------------
+                0.00    0.00       1/59141       wf::lastlegendrecomponentsignificance(int, double, std::complex<double>* restrict*) [56]
+                0.00    0.00       2/59141       wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.00       2/59141       wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00       4/59141       globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+                0.00    0.00      10/59141       wf::normsum_legendre(int, double, std::complex<double>* restrict*) [49]
+                0.00    0.00      40/59141       laguerrebasis::integrationtable(int) [220]
+                0.00    0.00      50/59141       wf::nthcomponentsignificance(std::complex<double>* restrict*, int) [37]
+                0.00    0.00    5576/59141       laguerrebasis::evallaguerrefuncs(double) [67]
+                0.00    0.00    7960/59141       globalbasis::nextdx(potential*, pulse*, double, double, double, double, double) [204]
+                0.00    0.00   12040/59141       ecsX(double, double, double) [65]
+                0.00    0.00   33456/59141       laguerrebasis::evalbasisfuncs(double) [63]
+[168]    0.0    0.00    0.00   59141         std::abs(double) [168]
+-----------------------------------------------
+                0.00    0.00   19900/51740       globalbasis::Oinvpsi(std::complex<double>*) [64]
+                0.00    0.00   31840/51740       wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [27]
+[169]    0.0    0.00    0.00   51740         bandarrayindx(int, int, int, int, int) [169]
+-----------------------------------------------
+                0.00    0.00       4/50972       wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00       8/50972       generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [79]
+                0.00    0.00   50960/50972       wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+[170]    0.0    0.00    0.00   50972         std::operator/(std::complex<double> const&, std::complex<double> const&) [170]
+-----------------------------------------------
+                0.00    0.00   35933/35933       char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [173]
+[171]    0.0    0.00    0.00   35933         bool __gnu_cxx::__is_null_pointer<char>(char*) [171]
+-----------------------------------------------
+                0.00    0.00   35933/35933       std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [178]
+[172]    0.0    0.00    0.00   35933         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [172]
+                0.00    0.00   35933/35933       char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [174]
+-----------------------------------------------
+                0.00    0.00   35933/35933       char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [174]
+[173]    0.0    0.00    0.00   35933         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [173]
+                0.00    0.00   35933/35933       bool __gnu_cxx::__is_null_pointer<char>(char*) [171]
+                0.00    0.00   35933/35933       std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [177]
+-----------------------------------------------
+                0.00    0.00   35933/35933       char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [172]
+[174]    0.0    0.00    0.00   35933         char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [174]
+                0.00    0.00   35933/35933       char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [173]
+-----------------------------------------------
+                0.00    0.00   35933/35933       std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [177]
+[175]    0.0    0.00    0.00   35933         std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag) [175]
+-----------------------------------------------
+                0.00    0.00   35933/35933       std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [177]
+[176]    0.0    0.00    0.00   35933         std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&) [176]
+-----------------------------------------------
+                0.00    0.00   35933/35933       char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [173]
+[177]    0.0    0.00    0.00   35933         std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [177]
+                0.00    0.00   35933/35933       std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&) [176]
+                0.00    0.00   35933/35933       std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag) [175]
+-----------------------------------------------
+                0.00    0.00       1/35821       main [1]
+                0.00    0.00   35820/35821       std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [180]
+[178]    0.0    0.00    0.00   35821         std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [178]
+                0.00    0.00   35933/35933       char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [172]
+-----------------------------------------------
+                0.00    0.00       1/35821       main [1]
+                0.00    0.00   35820/35821       derivedbasis::printstr(int, std::complex<double>*) [46]
+[179]    0.0    0.00    0.00   35821         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*) [179]
+                0.00    0.00   35821/59702       std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&&&) [167]
+-----------------------------------------------
+                0.00    0.00   35820/35820       derivedbasis::printstr(int, std::complex<double>*) [46]
+[180]    0.0    0.00    0.00   35820         std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [180]
+                0.00    0.00   35820/35821       std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [178]
+-----------------------------------------------
+                0.00    0.00   35820/35820       derivedbasis::printstr(int, std::complex<double>*) [46]
+[181]    0.0    0.00    0.00   35820         std::to_string(double) [181]
+-----------------------------------------------
+                0.00    0.00   27930/27930       derivedbasis::integrationtable(int) [192]
+[182]    0.0    0.00    0.00   27930         legendrebasis::mapy2range(double, double, double) [182]
+-----------------------------------------------
+                0.00    0.00      48/27928       triD_U(int, int) [209]
+                0.00    0.00   27880/27928       laguerrebasis::evallaguerrefuncs(double) [67]
+[183]    0.0    0.00    0.00   27928         _ZSt3powIiiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [183]
+-----------------------------------------------
+                0.00    0.00       2/25087       wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+                0.00    0.00      40/25087       pulse::Ez(double) [217]
+                0.00    0.00      85/25087       pulse::Az(double) [210]
+                0.00    0.00     880/25087       laguerrederiv(int, int, int, double) [207]
+                0.00    0.00   24080/25087       potential::Vecs(double, double, double) [66]
+[184]    0.0    0.00    0.00   25087         _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [184]
+-----------------------------------------------
+                0.00    0.00   23880/23880       derivedbasis::printstr(int, std::complex<double>*) [46]
+[185]    0.0    0.00    0.00   23880         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [185]
+                0.00    0.00   23880/59702       std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&&&) [167]
+-----------------------------------------------
+                0.00    0.00    2000/14000       laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00   12000/14000       std::complex<double> std::operator+<double>(double const&, std::complex<double> const&) [187]
+[186]    0.0    0.00    0.00   14000         std::complex<double>::operator+=(double) [186]
+-----------------------------------------------
+                0.00    0.00   12000/12000       ecsX(double, double, double) [65]
+[187]    0.0    0.00    0.00   12000         std::complex<double> std::operator+<double>(double const&, std::complex<double> const&) [187]
+                0.00    0.00   12000/14000       std::complex<double>::operator+=(double) [186]
+-----------------------------------------------
+                              358400             arraycopy(std::complex<double>*, int) [188]
+                0.00    0.00       1/8036        derivedbasis::funcvector(std::complex<double> (*)(double, double), double) [76]
+                0.00    0.00       1/8036        temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       2/8036        temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+                0.00    0.00       4/8036        derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [71]
+                0.00    0.00       5/8036        globalbasis::Oinvpsi(std::complex<double>*) [64]
+                0.00    0.00      20/8036        wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [54]
+                0.00    0.00      45/8036        arraymultiply(std::complex<double>*, int, std::complex<double>) [214]
+                0.00    0.00    1588/8036        derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+                0.00    0.00    6370/8036        basis::oinvpsi(std::complex<double>*) [196]
+[188]    0.0    0.00    0.00    8036+358400  arraycopy(std::complex<double>*, int) [188]
+                              358400             arraycopy(std::complex<double>*, int) [188]
+-----------------------------------------------
+                0.00    0.00     120/5696        laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00    5576/5696        laguerrebasis::evallaguerrefuncs(double) [67]
+[189]    0.0    0.00    0.00    5696         laguerrevalues(int, double) [189]
+-----------------------------------------------
+                0.00    0.00    5576/5576        derivedbasis::evalbasisfuncs(double) [10]
+[190]    0.0    0.00    0.00    5576         laguerrebasis::mapfromchildrange(double, double, double) [190]
+-----------------------------------------------
+                0.00    0.00       2/4452        temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       4/4452        temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+                0.00    0.00       5/4452        wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+                0.00    0.00       8/4452        temporalbasis::updateTmats(double, double, pulse*) [61]
+                0.00    0.00       8/4452        laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00      45/4452        arraymultiply(std::complex<double>*, int, std::complex<double>) [214]
+                0.00    0.00    1204/4452        derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00    3176/4452        derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+[191]    0.0    0.00    0.00    4452         arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+-----------------------------------------------
+                0.00    0.00       1/4394        derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [77]
+                0.00    0.00       4/4394        temporalbasis::Amatsetup(pulse*) [62]
+                0.00    0.00     797/4394        wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00    1204/4394        derivedbasis::integrateVmat(potential*, double, double, double, double) [44]
+                0.00    0.00    2388/4394        derivedbasis::printstr(int, std::complex<double>*) [46]
+[192]    0.0    0.00    0.00    4394         derivedbasis::integrationtable(int) [192]
+                0.00    0.00   27930/27930       legendrebasis::mapy2range(double, double, double) [182]
+                0.00    0.00    4382/4382        legendrebasis::integrationtable(int) [194]
+                0.00    0.00    4382/4382        legendrebasis::dy2dx(double, double) [195]
+                0.00    0.00      80/80          laguerrebasis::mapy2range(double, double, double) [212]
+                0.00    0.00      12/12          laguerrebasis::integrationtable(int) [220]
+                0.00    0.00      12/12          laguerrebasis::dy2dx(double, double) [221]
+-----------------------------------------------
+                0.00    0.00    4382/4382        legendrebasis::integrationtable(int) [194]
+[193]    0.0    0.00    0.00    4382         gltable(int, double*, double*) [193]
+-----------------------------------------------
+                0.00    0.00    4382/4382        derivedbasis::integrationtable(int) [192]
+[194]    0.0    0.00    0.00    4382         legendrebasis::integrationtable(int) [194]
+                0.00    0.00    4382/4382        gltable(int, double*, double*) [193]
+-----------------------------------------------
+                0.00    0.00    4382/4382        derivedbasis::integrationtable(int) [192]
+[195]    0.0    0.00    0.00    4382         legendrebasis::dy2dx(double, double) [195]
+-----------------------------------------------
+                0.00    0.00    3185/3185        wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+[196]    0.0    0.00    0.00    3185         basis::oinvpsi(std::complex<double>*) [196]
+                0.00    0.00    6370/8036        arraycopy(std::complex<double>*, int) [188]
+-----------------------------------------------
+                0.00    0.00    1592/3184        derivedbasis::updateHmat(potential*) [6]
+                0.00    0.00    1592/3184        globalbasis::setupVmats(potential*) [8]
+[197]    0.0    0.00    0.00    3184         derivedbasis::Vmatsetup(potential*) [197]
+-----------------------------------------------
+                0.00    0.00    2388/2388        wf::printstr() [47]
+[198]    0.0    0.00    0.00    2388         derivedbasis::printstr(std::complex<double>*) [198]
+-----------------------------------------------
+                               33920             laguerreval(int, double) [199]
+                0.00    0.00    1760/1760        laguerreval(int, int, double) [206]
+[199]    0.0    0.00    0.00    1760+33920   laguerreval(int, double) [199]
+                               33920             laguerreval(int, double) [199]
+-----------------------------------------------
+                0.00    0.00       3/1603        derivedbasis::derivedbasis() [226]
+                0.00    0.00       4/1603        legendrebasis::legendrebasis(int) [75]
+                0.00    0.00       4/1603        derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [71]
+                0.00    0.00       4/1603        laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00    1588/1603        derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+[200]    0.0    0.00    0.00    1603         basis::basis() [200]
+-----------------------------------------------
+                0.00    0.00       3/1603        derivedbasis::derivedbasis() [226]
+                0.00    0.00       4/1603        legendrebasis::legendrebasis(int) [75]
+                0.00    0.00       4/1603        derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [71]
+                0.00    0.00       4/1603        laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00    1588/1603        derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+[201]    0.0    0.00    0.00    1603         basis::basis() [201]
+-----------------------------------------------
+                0.00    0.00       1/1595        wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.00    1594/1595        globalbasis::~globalbasis() [231]
+[202]    0.0    0.00    0.00    1595         derivedbasis::~derivedbasis() [202]
+-----------------------------------------------
+                0.00    0.00       1/1595        temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       2/1595        temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+                0.00    0.00       4/1595        temporalbasis::updateTmats(double, double, pulse*) [61]
+                0.00    0.00    1588/1595        derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [53]
+[203]    0.0    0.00    0.00    1595         std::complex<double> std::operator/<double>(double const&, std::complex<double> const&) [203]
+                0.00    0.00    1595/78035       std::complex<double>& std::complex<double>::operator/=<double>(std::complex<double> const&) [166]
+-----------------------------------------------
+                0.00    0.00    1592/1592        globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&, bool) [223]
+[204]    0.0    0.00    0.00    1592         globalbasis::nextdx(potential*, pulse*, double, double, double, double, double) [204]
+                0.00    0.00    7960/59141       std::abs(double) [168]
+                0.00    0.00    1592/585992      potential::V(double) [160]
+-----------------------------------------------
+                0.00    0.00    1000/1000        laguerrebasis::laguerrebasis(int, double) [70]
+[205]    0.0    0.00    0.00    1000         std::complex<double>::operator-=(double) [205]
+-----------------------------------------------
+                                1760             laguerreval(int, int, double) [206]
+                0.00    0.00     880/880         laguerrederiv(int, int, int, double) [207]
+[206]    0.0    0.00    0.00     880+1760    laguerreval(int, int, double) [206]
+                0.00    0.00    1760/1760        laguerreval(int, double) [199]
+                                1760             laguerreval(int, int, double) [206]
+-----------------------------------------------
+                0.00    0.00     880/880         laguerrederivs(int, int, int, double) [211]
+[207]    0.0    0.00    0.00     880         laguerrederiv(int, int, int, double) [207]
+                0.00    0.00     880/25087       _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [184]
+                0.00    0.00     880/880         laguerreval(int, int, double) [206]
+-----------------------------------------------
+                0.00    0.00     796/796         globalbasis::Olappsi(std::complex<double>*) [69]
+[208]    0.0    0.00    0.00     796         derivedbasis::Olappsi(std::complex<double>*) [208]
+-----------------------------------------------
+                0.00    0.00      24/114         wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [26]
+                0.00    0.00      40/114         wf::Upsi(int, std::complex<double>* restrict*) [72]
+                0.00    0.00      50/114         triD_Umat(int) [90]
+[209]    0.0    0.00    0.00     114         triD_U(int, int) [209]
+                0.00    0.00      48/27928       _ZSt3powIiiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [183]
+-----------------------------------------------
+                0.00    0.00       5/85          wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [51]
+                0.00    0.00      80/85          temporalbasis::Amatsetup(pulse*) [62]
+[210]    0.0    0.00    0.00      85         pulse::Az(double) [210]
+                0.00    0.00      85/25087       _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [184]
+-----------------------------------------------
+                0.00    0.00      80/80          laguerrebasis::laguerrebasis(int, double) [70]
+[211]    0.0    0.00    0.00      80         laguerrederivs(int, int, int, double) [211]
+                0.00    0.00     880/880         laguerrederiv(int, int, int, double) [207]
+-----------------------------------------------
+                0.00    0.00      80/80          derivedbasis::integrationtable(int) [192]
+[212]    0.0    0.00    0.00      80         laguerrebasis::mapy2range(double, double, double) [212]
+-----------------------------------------------
+                0.00    0.00      50/50          triD_Qmat(int) [89]
+[213]    0.0    0.00    0.00      50         triD_Q(int, int) [213]
+-----------------------------------------------
+                0.00    0.00       5/45          wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [50]
+                0.00    0.00      40/45          arraysum(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [215]
+[214]    0.0    0.00    0.00      45         arraymultiply(std::complex<double>*, int, std::complex<double>) [214]
+                0.00    0.00      45/8036        arraycopy(std::complex<double>*, int) [188]
+                0.00    0.00      45/4452        arrayscale(std::complex<double>*, int, std::complex<double>) [191]
+-----------------------------------------------
+                0.00    0.00      40/40          arraydiff(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [216]
+[215]    0.0    0.00    0.00      40         arraysum(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [215]
+                0.00    0.00      40/45          arraymultiply(std::complex<double>*, int, std::complex<double>) [214]
+-----------------------------------------------
+                0.00    0.00      40/40          wf::psixtdiff(std::complex<double>* restrict*, std::complex<double>* restrict*, int) [222]
+[216]    0.0    0.00    0.00      40         arraydiff(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [216]
+                0.00    0.00      40/129257      std::operator-(std::complex<double> const&) [161]
+                0.00    0.00      40/40          arraysum(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [215]
+-----------------------------------------------
+                0.00    0.00      40/40          temporalbasis::Amatsetup(pulse*) [62]
+[217]    0.0    0.00    0.00      40         pulse::Ez(double) [217]
+                0.00    0.00      40/25087       _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_ [184]
+-----------------------------------------------
+                0.00    0.00      32/32          wf::temporalvector_rhstarget(int, std::complex<double>*, std::complex<double>* restrict*) [82]
+[218]    0.0    0.00    0.00      32         std::conj(std::complex<double> const&) [218]
+-----------------------------------------------
+                0.00    0.00       4/16          laguerrebasis::laguerrebasis(int, double) [70]
+                0.00    0.00      12/16          laguerrebasis::integrationtable(int) [220]
+[219]    0.0    0.00    0.00      16         laguerretable(int, double*, double*) [219]
+-----------------------------------------------
+                0.00    0.00      12/12          derivedbasis::integrationtable(int) [192]
+[220]    0.0    0.00    0.00      12         laguerrebasis::integrationtable(int) [220]
+                0.00    0.00      40/59141       std::abs(double) [168]
+                0.00    0.00      12/16          laguerretable(int, double*, double*) [219]
+-----------------------------------------------
+                0.00    0.00      12/12          derivedbasis::integrationtable(int) [192]
+[221]    0.0    0.00    0.00      12         laguerrebasis::dy2dx(double, double) [221]
+-----------------------------------------------
+                0.00    0.00       8/8           wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [17]
+[222]    0.0    0.00    0.00       8         wf::psixtdiff(std::complex<double>* restrict*, std::complex<double>* restrict*, int) [222]
+                0.00    0.00      40/40          arraydiff(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [216]
+-----------------------------------------------
+                0.00    0.00       2/4           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+                0.00    0.00       2/4           globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&) [230]
+[223]    0.0    0.00    0.00       4         globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&, bool) [223]
+                0.00    0.00    1592/1592        globalbasis::nextdx(potential*, pulse*, double, double, double, double, double) [204]
+-----------------------------------------------
+                0.00    0.00       4/4           globalbasis::~globalbasis() [231]
+[224]    0.0    0.00    0.00       4         laguerrebasis::~laguerrebasis() [224]
+-----------------------------------------------
+                0.00    0.00       4/4           globalbasis::~globalbasis() [231]
+[225]    0.0    0.00    0.00       4         legendrebasis::~legendrebasis() [225]
+-----------------------------------------------
+                0.00    0.00       1/3           temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       2/3           temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+[226]    0.0    0.00    0.00       3         derivedbasis::derivedbasis() [226]
+                0.00    0.00       3/1603        basis::basis() [200]
+                0.00    0.00       3/1603        basis::basis() [201]
+-----------------------------------------------
+                0.00    0.00       1/3           temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [68]
+                0.00    0.00       2/3           temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [73]
+[227]    0.0    0.00    0.00       3         derivedbasis::derivedbasis() [227]
+-----------------------------------------------
+                0.00    0.00       1/3           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.00       2/3           globalbasis::~globalbasis() [231]
+[228]    0.0    0.00    0.00       3         derivedbasis::~derivedbasis() [228]
+-----------------------------------------------
+                0.00    0.00       1/3           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+                0.00    0.00       2/3           globalbasis::~globalbasis() [231]
+[229]    0.0    0.00    0.00       3         temporalbasis::~temporalbasis() [229]
+-----------------------------------------------
+                0.00    0.00       2/2           globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [28]
+[230]    0.0    0.00    0.00       2         globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&) [230]
+                0.00    0.00       2/4           globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&, bool) [223]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[231]    0.0    0.00    0.00       2         globalbasis::~globalbasis() [231]
+                0.00    0.00    1594/1595        derivedbasis::~derivedbasis() [202]
+                0.00    0.00       4/4           legendrebasis::~legendrebasis() [225]
+                0.00    0.00       4/4           laguerrebasis::~laguerrebasis() [224]
+                0.00    0.00       2/3           derivedbasis::~derivedbasis() [228]
+                0.00    0.00       2/3           temporalbasis::~temporalbasis() [229]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[232]    0.0    0.00    0.00       2         wf::~wf() [232]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[233]    0.0    0.00    0.00       2         potential::potential(double, double) [233]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::boundstatesetup(int, double&) [52]
+[234]    0.0    0.00    0.00       1         wf::boundstate(int, double&) [234]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[235]    0.0    0.00    0.00       1         pulse::pulse(double, double, double) [235]
+-----------------------------------------------
+                0.00    0.00       1/1           wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [15]
+[236]    0.0    0.00    0.00       1         double const& std::min<double>(double const&, double const&) [236]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[237]    0.0    0.00    0.00       1         std::to_string(int) [237]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[238]    0.0    0.00    0.00       1         std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [238]
+                0.00    0.00       1/59702       std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&&&) [167]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[239]    0.0    0.00    0.00       1         __sti___ZN27_INTERNAL_6_wf_cpp_f8275e2bSt8__ioinitE [239]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[240]    0.0    0.00    0.00       1         __sti___ZN30_INTERNAL_9_basis_cpp_9421bc7aSt8__ioinitE [240]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[241]    0.0    0.00    0.00       1         __sti___ZN30_INTERNAL_9_pulse_cpp_c2d1dcc1St8__ioinitE [241]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[242]    0.0    0.00    0.00       1         __sti___ZN33_INTERNAL_11_gltable_cpp_1d68bff4St8__ioinitE [242]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[243]    0.0    0.00    0.00       1         __sti___ZN33_INTERNAL_11_wf_fftw_cpp_f8275e2bSt8__ioinitE [243]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[244]    0.0    0.00    0.00       1         __sti___ZN34_INTERNAL_12_laguerre_cpp_ab735f84St8__ioinitE [244]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[245]    0.0    0.00    0.00       1         __sti___ZN34_INTERNAL_12_legendre_cpp_aa2e7955St8__ioinitE [245]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[246]    0.0    0.00    0.00       1         __sti___ZN34_INTERNAL_12_printmat_cpp_9761d633St8__ioinitE [246]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[247]    0.0    0.00    0.00       1         __sti___ZN35_INTERNAL_13_functions_cpp_64f858b7St8__ioinitE [247]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[248]    0.0    0.00    0.00       1         __sti___ZN35_INTERNAL_13_potential_cpp_2cf1dc2fSt8__ioinitE [248]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[249]    0.0    0.00    0.00       1         __sti___ZN35_INTERNAL_13_triDbasis_cpp_f10db344St8__ioinitE [249]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[250]    0.0    0.00    0.00       1         __sti___ZN37_INTERNAL_15_basischange_cpp_55d00c2eSt8__ioinitE [250]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[251]    0.0    0.00    0.00       1         __sti___ZN37_INTERNAL_15_globalbasis_cpp_bcfd12ccSt8__ioinitE [251]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[252]    0.0    0.00    0.00       1         __sti___ZN38_INTERNAL_16_derivedbasis_cpp_4eb668e7St8__ioinitE [252]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[253]    0.0    0.00    0.00       1         __sti___ZN38_INTERNAL_16_wf_functions_cpp_4e3cbe5bSt8__ioinitE [253]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[254]    0.0    0.00    0.00       1         __sti___ZN39_INTERNAL_17_ecsconversion_cpp_e171a1fcSt8__ioinitE [254]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[255]    0.0    0.00    0.00       1         __sti___ZN39_INTERNAL_17_laguerrebasis_cpp_913365f9St8__ioinitE [255]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[256]    0.0    0.00    0.00       1         __sti___ZN39_INTERNAL_17_laguerretable_cpp_ab735f84St8__ioinitE [256]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[257]    0.0    0.00    0.00       1         __sti___ZN39_INTERNAL_17_legendrebasis_cpp_66752aaaSt8__ioinitE [257]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[258]    0.0    0.00    0.00       1         __sti___ZN39_INTERNAL_17_temporalbasis_cpp_97765ad5St8__ioinitE [258]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[259]    0.0    0.00    0.00       1         __sti___ZN39_INTERNAL_17_wf_boundstate_cpp_e2f09f72St8__ioinitE [259]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[260]    0.0    0.00    0.00       1         __sti___ZN40_INTERNAL_18_arrayfunctions_cpp_5aa1d33aSt8__ioinitE [260]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[261]    0.0    0.00    0.00       1         __sti___ZN40_INTERNAL_18_onedpropagator_cpp_d6170544St8__ioinitE [261]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[262]    0.0    0.00    0.00       1         __sti___ZN40_INTERNAL_18_wfxt_propagate_cpp_4f61988aSt8__ioinitE [262]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[263]    0.0    0.00    0.00       1         __sti___ZN43_INTERNAL_21_linearsystemsetup_cpp_1c359925St8__ioinitE [263]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[264]    0.0    0.00    0.00       1         __sti___ZN45_INTERNAL_23_mapintegrationtable_cpp_a89434f7St8__ioinitE [264]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[265]    0.0    0.00    0.00       1         __sti___ZN45_INTERNAL_23_wfxt_minimizeaction_cpp_4f61988aSt8__ioinitE [265]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[266]    0.0    0.00    0.00       1         __sti___ZN46_INTERNAL_24_wf_iterativesolution_cpp_4e3cbe5bSt8__ioinitE [266]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[267]    0.0    0.00    0.00       1         __sti___ZN47_INTERNAL_25_globalbasis_psi0setup_cpp_521edac8St8__ioinitE [267]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[268]    0.0    0.00    0.00       1         __sti___ZN48_INTERNAL_26_globalbasis_boundstate_cpp_0c1caeecSt8__ioinitE [268]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[269]    0.0    0.00    0.00       1         __sti___ZN49_INTERNAL_27_globalbasis_eltbdysetup_cpp_dd557286St8__ioinitE [269]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[270]    0.0    0.00    0.00       1         __sti___ZN49_INTERNAL_27_globallinearsystemsetup_cpp_1d68bff4St8__ioinitE [270]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[271]    0.0    0.00    0.00       1         __sti___ZN52_INTERNAL_30_globalbasis_minimizeaction_cpp_e4053ab8St8__ioinitE [271]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[272]    0.0    0.00    0.00       1         __sti___ZN52_INTERNAL_30_linearsystemsetup_lagrange_cpp_1c359925St8__ioinitE [272]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[273]    0.0    0.00    0.00       1         __sti___ZN55_INTERNAL_33_sourcewf_inhomogeneous_action_cpp_b047e43dSt8__ioinitE [273]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[274]    0.0    0.00    0.00       1         __sti___ZN56_INTERNAL_34_wf_iterativesolution_diagonalU_cpp_3df15ce6St8__ioinitE [274]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[275]    0.0    0.00    0.00       1         __sti___ZN58_INTERNAL_36_globallinearsystemsetup_lagrange_cpp_1d68bff4St8__ioinitE [275]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[276]    0.0    0.00    0.00       1         __sti___ZN63_INTERNAL_41_wf_iterativesolution_incoherentsource_cpp_fb8877c5St8__ioinitE [276]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[277]    0.0    0.00    0.00       1         __sti___ZN67_INTERNAL_45_wf_iterativesolution_temporaleigenvectors_cpp_9a69f9bbSt8__ioinitE [277]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [520]
+[278]    0.0    0.00    0.00       1         __sti___ZN71_INTERNAL_49_wf_iterativesolution_temporaleigenvectors_aux_cpp_2e5bc8b3St8__ioinitE [278]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+ [191] arrayscale(std::complex<double>*, int, std::complex<double>) [202] derivedbasis::~derivedbasis() [186] std::complex<double>::operator+=(double)
+ [199] laguerreval(int, double) [228] derivedbasis::~derivedbasis() [19] std::complex<double>& std::complex<double>::operator+=<double>(std::complex<double> const&)
+ [206] laguerreval(int, int, double) [212] laguerrebasis::mapy2range(double, double, double) [175] std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag)
+ [214] arraymultiply(std::complex<double>*, int, std::complex<double>) [63] laguerrebasis::evalbasisfuncs(double) [155] std::__complex_abs(doublecomplex )
+ [169] bandarrayindx(int, int, int, int, int) [220] laguerrebasis::integrationtable(int) [163] std::__complex_exp(doublecomplex )
+  [86] identitybasis(int)     [67] laguerrebasis::evallaguerrefuncs(double) [176] std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&)
+ [207] laguerrederiv(int, int, int, double) [190] laguerrebasis::mapfromchildrange(double, double, double) [156] double std::abs<double>(std::complex<double> const&)
+ [219] laguerretable(int, double*, double*) [221] laguerrebasis::dy2dx(double, double) [168] std::abs(double)
+  [81] leftbordervec(int)     [70] laguerrebasis::laguerrebasis(int, double) [164] std::complex<double> std::exp<double>(std::complex<double> const&)
+ [211] laguerrederivs(int, int, int, double) [224] laguerrebasis::~laguerrebasis() [236] double const& std::min<double>(double const&, double const&)
+ [189] laguerrevalues(int, double) [182] legendrebasis::mapy2range(double, double, double) [184] _ZSt3powIdiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_
+  [33] legendrevalues(int, double) [12] legendrebasis::evalbasisfuncs(double) [183] _ZSt3powIiiEN9__gnu_cxx11__promote_2INS0_11__enable_ifIXaasr3std15__is_arithmeticIT_EE7__valuesr3std15__is_arithmeticIT0_EE7__valueES3_E6__typeES4_E6__typeES3_S4_
+  [83] rightbordervec(int)   [194] legendrebasis::integrationtable(int) [218] std::conj(std::complex<double> const&)
+   [9] initializearray(int)  [159] legendrebasis::mapfromchildrange(double, double, double) [167] std::remove_reference<std::string&>::type&& std::move<std::string&>(std::string&&&)
+  [74] padeigenvectors(int, std::complex<double>*) [195] legendrebasis::dy2dx(double, double) [177] std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*)
+  [91] triD_basischange(int)  [75] legendrebasis::legendrebasis(int) [181] std::to_string(double)
+  [55] matrix_basischange(int, int, std::complex<double>*, std::complex<double>*) [225] legendrebasis::~legendrebasis() [237] std::to_string(int)
+  [14] vector_basischange(int, int, std::complex<double>*, std::complex<double>*) [61] temporalbasis::updateTmats(double, double, pulse*) [203] std::complex<double> std::operator/<double>(double const&, std::complex<double> const&)
+  [78] borderfunctionbasis(int) [62] temporalbasis::Amatsetup(pulse*) [158] std::complex<double> std::operator/<double>(std::complex<double> const&, double const&)
+  [79] generalized_eigensystem_reduced(int, std::complex<double>*, std::complex<double>*) [73] temporalbasis::temporalbasis(legendrebasis*, std::complex<double>*, double, double) [170] std::operator/(std::complex<double> const&, std::complex<double> const&)
+  [84] leftborderfunctionbasis_laguerre(int) [68] temporalbasis::temporalbasis(temporalbasis*, std::complex<double>*, pulse*, double, double) [32] std::operator-(std::complex<double> const&, std::complex<double> const&)
+  [85] rightborderfunctionbasis_laguerre(int) [229] temporalbasis::~temporalbasis() [57] std::complex<double> std::operator*<double>(double const&, std::complex<double> const&)
+  [65] ecsX(double, double, double) [234] wf::boundstate(int, double&) [13] std::complex<double> std::operator*<double>(std::complex<double> const&, double const&)
+  [93] ExpIwt(double, double) [51] wf::dipole_gauge(std::complex<double>* restrict*, pulse*, temporalbasis*) [21] std::operator*(std::complex<double> const&, std::complex<double> const&)
+ [213] triD_Q(int, int)       [48] wf::initialguess(int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [161] std::operator-(std::complex<double> const&)
+ [209] triD_U(int, int)       [39] wf::applydeltapsi(int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [179] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, char const*)
+ [193] gltable(int, double*, double*) [29] wf::applydeltapsi(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [185] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+ [215] arraysum(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [92] wf::residualaction(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [238] std::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  [88] printmat(std::complex<double>*, int, int) [52] wf::boundstatesetup(int, double&) [187] std::complex<double> std::operator+<double>(double const&, std::complex<double> const&)
+ [188] arraycopy(std::complex<double>*, int) [80] wf::eigenvectortowf(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*) [20] std::operator+(std::complex<double> const&, std::complex<double> const&)
+ [216] arraydiff(std::complex<double>, std::complex<double>*, std::complex<double>, std::complex<double>*, int) [49] wf::normsum_legendre(int, double, std::complex<double>* restrict*) [25] __intel_new_memset
+  [24] arrayindx(int, int, int, int) [27] wf::deltawf_eigenvector(std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>, std::complex<double>) [239] __sti___ZN27_INTERNAL_6_wf_cpp_f8275e2bSt8__ioinitE (wf.cpp)
+  [30] transpose(std::complex<double>*, int, int) [41] wf::deltapsiresidual_Aterms(int, int, std::complex<double>*, std::complex<double>, std::complex<double>, std::complex<double>* restrict*, temporalbasis*) [240] __sti___ZN30_INTERNAL_9_basis_cpp_9421bc7aSt8__ioinitE (basis.cpp)
+  [89] triD_Qmat(int)         [37] wf::nthcomponentsignificance(std::complex<double>* restrict*, int) [241] __sti___ZN30_INTERNAL_9_pulse_cpp_c2d1dcc1St8__ioinitE (arrayfunctions.cpp)
+  [90] triD_Umat(int)         [82] wf::temporalvector_rhstarget(int, std::complex<double>*, std::complex<double>* restrict*) [242] __sti___ZN33_INTERNAL_11_gltable_cpp_1d68bff4St8__ioinitE (arrayfunctions.cpp)
+  [11] zeroarray(std::complex<double>*, int) [54] wf::triD_legendre_conversion(int, std::complex<double>* restrict*) [243] __sti___ZN33_INTERNAL_11_wf_fftw_cpp_f8275e2bSt8__ioinitE
+  [60] globalbasis::boundstate(int, double&) [26] wf::canceleigenvectorresiduals(int, int, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [244] __sti___ZN34_INTERNAL_12_laguerre_cpp_ab735f84St8__ioinitE (arrayfunctions.cpp)
+   [8] globalbasis::setupVmats(potential*) [15] wf::timestep_temporaleigenvectors(double, double, potential*, pulse*, wf*, double, double, double&) [245] __sti___ZN34_INTERNAL_12_legendre_cpp_aa2e7955St8__ioinitE (arrayfunctions.cpp)
+   [7] globalbasis::updateHmats(potential*) [17] wf::deltawfxt_temporaleigenvectors(int, int, int, double, std::complex<double>&, std::complex<double>*, std::complex<double>* restrict*, temporalbasis*) [246] __sti___ZN34_INTERNAL_12_printmat_cpp_9761d633St8__ioinitE (arrayfunctions.cpp)
+  [35] globalbasis::innerproduct(std::complex<double>*, std::complex<double>*) [50] wf::inhomogeneous_action_lengthgauge(double, pulse*, temporalbasis*) [247] __sti___ZN35_INTERNAL_13_functions_cpp_64f858b7St8__ioinitE
+ [230] globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&) [16] wf::propagate_iterative_inhomogenous(double, double, double&, pulse*, potential*, wf*, double, double) [248] __sti___ZN35_INTERNAL_13_potential_cpp_2cf1dc2fSt8__ioinitE (arrayfunctions.cpp)
+ [223] globalbasis::elementboundaries_zerobased(potential*, pulse*, double, double, double, double, double, int&, int&, bool) [56] wf::lastlegendrecomponentsignificance(int, double, std::complex<double>* restrict*) [249] __sti___ZN35_INTERNAL_13_triDbasis_cpp_f10db344St8__ioinitE (arrayfunctions.cpp)
+  [36] globalbasis::norm(std::complex<double>*) [38] wf::applydeltapsi_temporaleigenvectors(int, int, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [250] __sti___ZN37_INTERNAL_15_basischange_cpp_55d00c2eSt8__ioinitE (arrayfunctions.cpp)
+ [204] globalbasis::nextdx(potential*, pulse*, double, double, double, double, double) [22] wf::cancelresiduals_generalized_eigenvector(int, int, std::complex<double>*, std::complex<double>*, std::complex<double>* restrict*, std::complex<double>* restrict*, std::complex<double>* restrict*, temporalbasis*) [251] __sti___ZN37_INTERNAL_15_globalbasis_cpp_bcfd12ccSt8__ioinitE (arrayfunctions.cpp)
+  [64] globalbasis::Oinvpsi(std::complex<double>*) [72] wf::Upsi(int, std::complex<double>* restrict*) [252] __sti___ZN38_INTERNAL_16_derivedbasis_cpp_4eb668e7St8__ioinitE (arrayfunctions.cpp)
+  [69] globalbasis::Olappsi(std::complex<double>*) [59] wf::psif(std::complex<double>* restrict*, int) [253] __sti___ZN38_INTERNAL_16_wf_functions_cpp_4e3cbe5bSt8__ioinitE (wf_functions.cpp)
+  [43] globalbasis::ecssetup(int, double, potential*) [40] wf::maxdelta(std::complex<double>* restrict*, int) [254] __sti___ZN39_INTERNAL_17_ecsconversion_cpp_e171a1fcSt8__ioinitE (arrayfunctions.cpp)
+  [28] globalbasis::globalbasis(potential*, pulse*, double, double, double, double, double, int, int, double, double) [47] wf::printstr() [255] __sti___ZN39_INTERNAL_17_laguerrebasis_cpp_913365f9St8__ioinitE (arrayfunctions.cpp)
+ [231] globalbasis::~globalbasis() [222] wf::psixtdiff(std::complex<double>* restrict*, std::complex<double>* restrict*, int) [256] __sti___ZN39_INTERNAL_17_laguerretable_cpp_ab735f84St8__ioinitE (arrayfunctions.cpp)
+  [76] derivedbasis::funcvector(std::complex<double> (*)(double, double), double) [87] wf::wf(globalbasis*) [257] __sti___ZN39_INTERNAL_17_legendrebasis_cpp_66752aaaSt8__ioinitE (arrayfunctions.cpp)
+   [6] derivedbasis::updateHmat(potential*) [232] wf::~wf() [258] __sti___ZN39_INTERNAL_17_temporalbasis_cpp_97765ad5St8__ioinitE (arrayfunctions.cpp)
+  [34] derivedbasis::innerproduct(std::complex<double>*, std::complex<double>*) [196] basis::oinvpsi(std::complex<double>*) [259] __sti___ZN39_INTERNAL_17_wf_boundstate_cpp_e2f09f72St8__ioinitE (wf_boundstate.cpp)
+   [4] derivedbasis::integrateVmat(potential*, double, double) [200] basis::basis() [260] __sti___ZN40_INTERNAL_18_arrayfunctions_cpp_5aa1d33aSt8__ioinitE (arrayfunctions.cpp)
+  [44] derivedbasis::integrateVmat(potential*, double, double, double, double) [201] basis::basis() [261] __sti___ZN40_INTERNAL_18_onedpropagator_cpp_d6170544St8__ioinitE (arrayfunctions.cpp)
+   [5] derivedbasis::integrateVmat(potential*, double, double, int) [210] pulse::Az(double) [262] __sti___ZN40_INTERNAL_18_wfxt_propagate_cpp_4f61988aSt8__ioinitE (wfxt_propagate.cpp)
+  [10] derivedbasis::evalbasisfuncs(double) [217] pulse::Ez(double) [263] __sti___ZN43_INTERNAL_21_linearsystemsetup_cpp_1c359925St8__ioinitE
+  [45] derivedbasis::evalcoeffvector(std::complex<double>*, double) [235] pulse::pulse(double, double, double) [264] __sti___ZN45_INTERNAL_23_mapintegrationtable_cpp_a89434f7St8__ioinitE (arrayfunctions.cpp)
+ [192] derivedbasis::integrationtable(int) [180] std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [265] __sti___ZN45_INTERNAL_23_wfxt_minimizeaction_cpp_4f61988aSt8__ioinitE
+   [2] derivedbasis::integrateVmat_testconvergence(potential*, double, double, double) [171] bool __gnu_cxx::__is_null_pointer<char>(char*) [266] __sti___ZN46_INTERNAL_24_wf_iterativesolution_cpp_4e3cbe5bSt8__ioinitE
+ [208] derivedbasis::Olappsi(std::complex<double>*) [160] potential::V(double) [267] __sti___ZN47_INTERNAL_25_globalbasis_psi0setup_cpp_521edac8St8__ioinitE
+ [162] derivedbasis::Xmatpsi(std::complex<double>*, std::complex<double>*) [66] potential::Vecs(double, double, double) [268] __sti___ZN48_INTERNAL_26_globalbasis_boundstate_cpp_0c1caeecSt8__ioinitE
+  [77] derivedbasis::funcolap(std::complex<double> (*)(double, double), double) [233] potential::potential(double, double) [269] __sti___ZN49_INTERNAL_27_globalbasis_eltbdysetup_cpp_dd557286St8__ioinitE
+ [198] derivedbasis::printstr(std::complex<double>*) [172] char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&) [270] __sti___ZN49_INTERNAL_27_globallinearsystemsetup_cpp_1d68bff4St8__ioinitE (globallinearsystemsetup.cpp)
+  [46] derivedbasis::printstr(int, std::complex<double>*) [173] char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [271] __sti___ZN52_INTERNAL_30_globalbasis_minimizeaction_cpp_e4053ab8St8__ioinitE (globalbasis_minimizeaction.cpp)
+ [197] derivedbasis::Vmatsetup(potential*) [174] char* std::string::_S_construct_aux<char*>(char*, char*, std::allocator<char> const&, std::__false_type) [272] __sti___ZN52_INTERNAL_30_linearsystemsetup_lagrange_cpp_1c359925St8__ioinitE
+   [3] derivedbasis::Vmatsetup(potential*, double) [178] std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<char*>(char*, char*, std::allocator<char> const&) [273] __sti___ZN55_INTERNAL_33_sourcewf_inhomogeneous_action_cpp_b047e43dSt8__ioinitE (sourcewf_inhomogeneous_action.cpp)
+  [42] derivedbasis::ecsrotate(double, potential*, double, double) [18] std::complex<double>::operator=(double) [274] __sti___ZN56_INTERNAL_34_wf_iterativesolution_diagonalU_cpp_3df15ce6St8__ioinitE
+  [58] derivedbasis::hmatsetup() [157] std::complex<double>::operator/=(double) [275] __sti___ZN58_INTERNAL_36_globallinearsystemsetup_lagrange_cpp_1d68bff4St8__ioinitE
+  [71] derivedbasis::derivedbasis(laguerrebasis*, std::complex<double>*, int, double) [166] std::complex<double>& std::complex<double>::operator/=<double>(std::complex<double> const&) [276] __sti___ZN63_INTERNAL_41_wf_iterativesolution_incoherentsource_cpp_fb8877c5St8__ioinitE
+  [53] derivedbasis::derivedbasis(legendrebasis*, std::complex<double>*, int, double, double) [205] std::complex<double>::operator-=(double) [277] __sti___ZN67_INTERNAL_45_wf_iterativesolution_temporaleigenvectors_cpp_9a69f9bbSt8__ioinitE
+ [226] derivedbasis::derivedbasis() [23] std::complex<double>::operator*=(double) [278] __sti___ZN71_INTERNAL_49_wf_iterativesolution_temporaleigenvectors_aux_cpp_2e5bc8b3St8__ioinitE
+ [227] derivedbasis::derivedbasis() [165] std::complex<double>& std::complex<double>::operator*=<double>(std::complex<double> const&) [31] hypot.L

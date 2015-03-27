@@ -1,0 +1,69 @@
+#include "./classes.h"
+#include "./wf.h"
+
+//constructors/destructors for wf
+wf::wf(){
+  gbas=0;
+  psi=0;
+  nbf=0;
+  eltfirstindices=0;
+}
+
+wf::wf(globalbasis* gbas_in){
+  gbas=gbas_in;
+  nbf=gbas->nbf;
+  psi=initializearray(nbf);
+  eltfirstindices=gbas->eltfirstindices;
+}
+
+//note that this assumes psi_in has the right size
+wf::wf(globalbasis* gbas_in, cmplx* psi_in){
+  gbas=gbas_in;
+  nbf=gbas->nbf;
+  psi=psi_in;
+  eltfirstindices=gbas->eltfirstindices;
+}
+
+wf::wf(globalbasis* gbas_in, cmplx (*func)(rl x)){
+  gbas=gbas_in;
+  nbf=gbas->nbf;
+  psi=initializearray(nbf);
+  psi0setup(func);
+  eltfirstindices=gbas->eltfirstindices;
+}
+
+wf::~wf(){
+  delete [] psi;
+}
+
+//constructors/destructors for wfxt
+wfxt::wfxt(){
+  gbas=0;
+  psixt=0;
+  nbf=0;
+  torder=0;
+  eltfirstindices=0;
+}
+
+wfxt:: wfxt(wf* wf_in){
+  gbas=wf_in->gbas;
+  nbf=gbas->nbf;
+  eltfirstindices=gbas->eltfirstindices;
+  torder=gbas->torder;
+  psixt=0;
+  wfxt_psi0xF0(wf_in->psi);
+}
+
+wfxt::wfxt(globalbasis* gbas_in){
+  gbas=gbas_in;
+  nbf=gbas->nbf;
+  eltfirstindices=gbas->eltfirstindices;
+  torder=gbas_in->torder;
+  psixt=initializearray(nbf*torder);
+  torder=gbas->torder;
+}
+
+wfxt::~wfxt(){
+  delete [] psixt;
+}
+

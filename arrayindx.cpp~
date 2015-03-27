@@ -1,0 +1,48 @@
+//inline
+int arrayindx(int i, int j, int ni, int nj){
+  //Multidimensional arrays are stored as 1D arrays.  Converts from 2D to 1D
+  //indexing
+  //For the purposes of BLAS calls, this corresponds with CblasRowMajor indexing
+  //return j+i*nj;
+
+  //To make it easier to interface with LAPACK, it is desirable to use column
+  //major indexing
+  return i+j*ni;
+
+}
+
+int bandarrayindx(int i, int j, int ku, int kl, int nj){
+  //arrayindx for an array stored in banded format.  See
+  //man page for zgbsv
+  //int indx1=ku+1+i-j;
+  //int bandwidth=ku+kl+1;
+  //return arrayindx(indx1,j,bandwidth,nj);
+
+  int indx1=kl+ku+1+i-j;
+  int width=2*kl+ku+1;
+  return arrayindx(indx1,j,width,nj);
+}
+
+//inline
+int twodarrayindx(int i, int j, int n, int m, int ox, int ot){
+
+  int xtindx1=arrayindx(i,n,ox,ot);
+  int xtindx2=arrayindx(j,m,ox,ot);
+
+  return arrayindx(xtindx1,xtindx2,ox*ot,ox*ot);
+}
+
+int lsindx(int nx, int nt, int ox, int ot){
+  //ox = order of x polynomials, ot = order of t polynomials since we want to
+  //string together the linear systems from multiple domains, it follows that
+  //the t index must be least significant, so that the linear system from one
+  //finite element forms a block of the global linear system.
+  return nx*ot+nt;
+}
+
+
+int lsindx2(int nx1, int nt1, int nx2, int nt2, int ox, int ot){
+  int indx1=lsindx(nx1,nt1,ox,ot);
+  int indx2=lsindx(nx2,nt2,ox,ot);
+  return arrayindx(indx1,indx2,ox*ot,ox*ot);
+}

@@ -1,0 +1,83 @@
+///Array index functions are used so often in the inner part of loops that it makes sense to define them as inline functions, thereby allowing for more aggressive compiler optimization and reducing the cost of function calls.  
+
+//Note: it is very important to be consistent in the choice of indexing
+//function!  Unfortunately, the need to use blas calls (which require column
+//major indexing) conflicts with the need for the t index to be the least
+//significant index (so that the matrix will be banded).  This means that it's
+//very possible to screw up which indexing function is used to index a
+//particular array.  The convention I use is:
+//psixt uses arrayindx(ix, jt, nx, nt)
+//local matrix elements also use arrayindx, so that they can be used to 
+//multiply psixt using a blas call
+//linear systems use lsindx(ix,it, nx,nt), so that t is the least significant
+//index.  This is used for both rhsvec and lhsmat.  
+//Thus, when copying matrices or vectors into or out of linear systems or
+//their solutions, there will be two different indexing schemes in use!
+
+inline
+int arrayindx(int i, int j, int ni, int nj){
+  //Multidimensional arrays are stored as 1D arrays.  Converts from 2D to 1D
+  //indexing
+  //For the purposes of BLAS calls, this corresponds with CblasRowMajor indexing
+  //return j+i*nj;
+
+  //To make it easier to interface with LAPACK, it is desirable to use column
+  //major indexing
+  return i+j*ni;
+
+}
+
+inline
+int bandarrayindx(int i, int j, int ku, int kl, int nj){
+  //arrayindx for an array stored in banded format.  See
+  //man page for zgbsv
+  //int indx1=ku+1+i-j; ***Note this is fortran-style 1 based indexing!
+  //int bandwidth=ku+kl+1;
+  //return arrayindx(indx1,j,bandwidth,nj);
+
+  //int indx1=kl+ku+1+i-j;
+  int indx1=kl+ku+i-j;//because C uses zero based indexing rather than 1 based
+		      //indexing, it's necessary to subtract the 1.
+  int width=2*kl+ku+1;
+  return arrayindx(indx1,j,width,nj);
+}
+
+inline
+int hbandarrayindx(char uplo, int i, int j, int ka, int nj){
+  int indx1=0;
+  if((uplo=='u') or (uplo=='U')){
+    indx1=ka+i-j;
+  }
+  if((uplo=='l') or (uplo=='L')){
+    indx1=i-j;
+    //indx1=i-j,j;
+  }
+  int width=ka+1;
+  //cout <<"hbandindx\t"<<i<<"\t"<<j<<"\t"<<ka<<"\t"<<indx1<<"\t"<<arrayindx(indx1,j,width,nj)<<"\n";
+  return arrayindx(indx1,j,width,nj);
+}
+
+inline
+int twodarrayindx(int i, int j, int n, int m, int ox, int ot){
+
+  int xtindx1=arrayindx(i,n,ox,ot);
+  int xtindx2=arrayindx(j,m,ox,ot);
+
+  return arrayindx(xtindx1,xtindx2,ox*ot,ox*ot);
+}
+
+inline
+int lsindx(int nx, int nt, int ox, int ot){
+  //ox = order of x polynomials, ot = order of t polynomials since we want to
+  //string together the linear systems from multiple domains, it follows that
+  //the t index must be least significant, so that the linear system from one
+  //finite element forms a block of the global linear system.
+  return nx*ot+nt;
+}
+
+inline
+int lsindx2(int nx1, int nt1, int nx2, int nt2, int ox, int ot){
+  int indx1=lsindx(nx1,nt1,ox,ot);
+  int indx2=lsindx(nx2,nt2,ox,ot);
+  return arrayindx(indx1,indx2,ox*ot,ox*ot);
+}

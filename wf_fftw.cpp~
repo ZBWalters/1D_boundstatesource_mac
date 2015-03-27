@@ -1,0 +1,186 @@
+#include "./classes.h"
+#include "./wf.h"
+#include "/usr/local/intel/mkl/10.0.011/include/fftw/fftw3.h"
+//#include <fftw3.h>
+
+//The routines in this file set up a grid for a fourier transform, call FFTW
+//to perform the transform, and post process the results
+
+cmplx* wf::fouriertransformgrid(rl xstart, rl xstop, int nftpts){
+  rl dx=(xstop-xstart)/rl(nftpts-1);
+  //cout << "dx\t"<<dx<<"\n";
+  
+  cmplx* ftvals=new cmplx[nftpts];
+
+  rl* eltbdys=gbas->elementbdys;
+
+  rl xval=xstart;
+  //cout << "xval\t"<<xval<<"\n";
+  int eltindx=gbas->eltnum(xstart);
+  //cout << "eltindx\t"<<eltindx<<"\n";
+  //cout << "FT grid setup\n";
+
+  derivedbasis* tmpbas=gbas->elementbases[eltindx];
+  rl tmpxmin=tmpbas->xmin;
+  rl tmpxmax=tmpbas->xmax;
+
+//  for(int ftindx=0;ftindx<nftpts;ftindx++){
+//    rl xval=xstart+ftindx*dx;
+//    cout << "xval, eltindx\t"<<xval<<"\t"<<eltindx<<"\n";
+//    tmpbas=gbas->elementbases[eltindx];
+//    tmpxmin=tmpbas->xmin;
+//    tmpxmax=tmpbas->xmax;
+//    cout << "tmpbas xmin, xmax\t"<<tmpbas->xmin<<"\t"<<tmpbas->xmax<<"\n";
+//    //since both elt list and Fourier grid are well ordered, the element
+//    //containing xval must be greater than or equal to the element
+//    //corresponding to the last xval
+//    while((xval>tmpxmax) and (eltindx<(gbas->nelts-1))){
+//      cout <<"xval > tmpxmax\t"<<xval<<"\t"<<tmpxmax<<"\n";
+//      eltindx++;
+//      tmpbas=gbas->elementbases[eltindx];
+//      tmpxmin=tmpbas->xmin;
+//      tmpxmax=tmpbas->xmax;
+//      cout << "new eltindx\t"<<eltindx<<"\n";
+//    }
+//    int tmpindx=gbas->eltfirstindices[eltindx];
+//    cout << "tmpindx\t"<<tmpindx<<"\n";
+//    ftvals[ftindx]=gbas->elementbases[eltindx]->
+//      evalcoeffvector(&psi[tmpindx],xval);
+//    cout <<"ftvals\t"<< xval<<"\t"<<ftvals[ftindx]<<"\n";
+//  }
+
+  for(int ftindx=0;ftindx<nftpts;ftindx++){
+    rl xval=xstart+ftindx*dx;
+    int eltindx=gbas->eltnum(xval);
+    derivedbasis* tmpbas=gbas->elementbases[eltindx];
+    rl tmpxmin=tmpbas->xmin;
+    rl tmpxmax=tmpbas->xmax;
+    //cout <<"xval, tmpxmin, tmpxmax\t"<<xval<<"\t"<<tmpxmin<<"\t"<<tmpxmax<<"\n";
+    int tmpindx=gbas->eltfirstindices[eltindx];
+    ftvals[ftindx]=tmpbas->evalcoeffvector(&psi[tmpindx],xval);
+    //cout << "ftvals\t"<<xval<<"\t"<<ftvals[ftindx]<<"\n";
+  }
+
+  //cout<< "ftvals before fft\n";
+  //printmat(ftvals,nftpts,1);
+  //printmat_formatted("ftvals.dat",ftvals,nftpts,1);
+
+  return ftvals;
+}
+
+
+cmplx*  wf::fouriertransformwf(rl xstart, rl xstop, int nftpts){
+  //cout << "inside fouriertransformwf\n";
+  cmplx* wf_grid=fouriertransformgrid(xstart, xstop, nftpts);
+  //cout << "wf_grid calculated\n";
+  //printmat_formatted("wf_grid.dat",wf_grid,nftpts,1);
+  cmplx* wf_ft=new cmplx[nftpts];
+
+
+  fftw_plan pln=fftw_plan_dft_1d(nftpts,(fftw_complex*) wf_grid,
+				 (fftw_complex*) wf_ft,FFTW_FORWARD,
+				 FFTW_ESTIMATE);
+  fftw_execute(pln);
+  fftw_destroy_plan(pln);
+
+  delete [] wf_grid;
+
+  //cout << "wf_ft after fft\n";
+  //printmat(wf_ft,nftpts,1);
+  return wf_ft;
+}
+
+cmplx* wf::ftwf_recenter(cmplx* __restrict wf_ft, int size){
+  //to avoid raising powers of exponentials as in ftwf_shift, simply choose
+  //nshift=size/2.  Then exponentials will simply yield -1**n
+  cmplx* __restrict retarray=initializearray(size);
+  int nshift=size/2;
+  for(int i=0;i<size;i++){
+    retarray[(i+size/2)%size]=wf_ft[i]*pow(-1.,i);
+  }
+  return retarray;
+    
+}
+
+cmplx* wf::ftwf_shift(cmplx* __restrict wf_ft, int size, int nshift){
+  //fftw gives results in the standard dft order, with positive frequencies
+  //first, then negative frequencies in reverse order.  This function operates
+  //on a fourier transform calculated in this way to return a function
+  //centered at zero frequency, in ascending order (see Numerical Recipes in
+  //C, chapter 12) This routine returns a circular shift of the output,
+  //according to the shift theorem.  
+  cmplx II=cmplx(0.,1.);
+  rl Pi=3.14159265358979323846;
+  cmplx* retarray=new cmplx[size];
+  for(int i=0;i<size;i++){
+    //indices are shifted by nshift modulo size, while fourier transform picks
+    //up phase due to new zero value
+    retarray[(i+nshift)%size]=wf_ft[i]*
+      exp(2.*Pi*II*rl(i)*rl(nshift)/rl(size));
+  }
+  return retarray;
+  
+}
+
+cmplx* wf::wf_fft_postprocess(rl xstart, rl xstop, int nftpts){
+  //this function uses fftw to fourier transform the wavefunction, then shifts
+  //and normalizes the result
+  rl Pi=3.14159265358979323846;
+  cmplx* __restrict fftwf=fouriertransformwf(xstart,xstop,nftpts);
+  //cmplx* __restrict retwf=ftwf_shift(fftwf,nftpts,nftpts/2);//rather than all positive
+						 //frequencies centered at
+						 //w_nyquist/2, I prefer to
+						 //include negative and
+						 //positive frequencies
+						 //centered at zero
+  cmplx* __restrict retwf=ftwf_recenter(fftwf,nftpts);
+  //next, must normalize retwf
+  //rl normfactor=1./sqrt(rl(nftpts)*2.*Pi);
+  rl dx=(xstop-xstart)/rl(nftpts-1);
+  rl normfactor=dx;
+  for(int i=0;i<nftpts;i++){
+    retwf[i]*=normfactor;
+  }
+  delete [] fftwf;
+  return retwf;
+}
+
+rl* wf::fftfrequencies(rl xstart, rl xstop, int nftpts){
+  //returns frequencies for the post-processed fourier transform of the
+  //wavefunction
+  rl Pi=3.14159265358979323846;
+  rl dx=(xstop-xstart)/rl(nftpts-1);
+  rl wnyquist=Pi/dx;
+
+  rl* freqarray=new rl[nftpts];
+  for(int i=0;i<nftpts;i++){
+    freqarray[i]=wnyquist*rl(i)/rl(nftpts)-wnyquist/2.;
+  }
+  return freqarray;
+}
+
+void wf::printfft(str filename, rl xstart, rl xstop, int nftpts){
+  //cout << "inside printfft\n";
+  cmplx* wf_fft=wf_fft_postprocess(xstart,xstop,nftpts);
+  rl* fft_freqs=fftfrequencies(xstart,xstop,nftpts);
+  printmatpair(filename,fft_freqs,wf_fft,nftpts);
+  delete [] wf_fft;
+  delete [] fft_freqs;
+  //cout << "returning from printfft\n";
+}
+
+void wf::printfft(str filename, pulse* Pls,rl t,rl xstart, rl xstop, 
+		  int nftpts){
+  //cout << "inside printfft\n";
+  cmplx* wf_fft=wf_fft_postprocess(xstart,xstop,nftpts);
+  rl* fft_freqs=fftfrequencies(xstart,xstop,nftpts);
+  rl vecpot=Pls->Az(t);
+  for(int i=0;i<nftpts;i++){
+    fft_freqs[i]-=vecpot;
+  }
+
+  printmatpair(filename,fft_freqs,wf_fft,nftpts);
+  delete [] wf_fft;
+  delete [] fft_freqs;
+  //cout << "returning from printfft\n";
+}

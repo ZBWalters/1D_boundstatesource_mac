@@ -1,0 +1,51 @@
+==14014== Memcheck, a memory error detector
+==14014== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.
+==14014== Using Valgrind-3.6.1 and LibVEX; rerun with -h for copyright info
+==14014== Command: ./onedpropagator.x
+==14014== 
+--14014-- Warning: DWARF2 CFI reader: unhandled DW_OP_ opcode 0x2a
+
+valgrind: m_debuginfo/readdwarf.c:2391 (copy_convert_CfiExpr_tree): Assertion 'srcix >= 0 && srcix < VG_(sizeXA)(srcxa)' failed.
+==14014==    at 0x3804CF26: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x3804D0CC: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x380BBB5C: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x380BCBBF: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x380BD761: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x380C0B84: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x38079558: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x38072BC1: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x3808B770: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x380B2B89: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x380881A7: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x3808501C: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x380861C9: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+==14014==    by 0x38095C54: ??? (in /usr/lib64/valgrind/memcheck-amd64-linux)
+
+sched status:
+  running_tid=1
+
+Thread 1: status = VgTs_Runnable
+==14014==    at 0x401681A: mmap (in /lib64/ld-2.14.1.so)
+==14014==    by 0x40066AD: _dl_map_object_from_fd (in /lib64/ld-2.14.1.so)
+==14014==    by 0x4007FD6: _dl_map_object (in /lib64/ld-2.14.1.so)
+==14014==    by 0x400C0A1: openaux (in /lib64/ld-2.14.1.so)
+==14014==    by 0x400DC35: _dl_catch_error (in /lib64/ld-2.14.1.so)
+==14014==    by 0x400C2BA: _dl_map_object_deps (in /lib64/ld-2.14.1.so)
+==14014==    by 0x40030AA: dl_main (in /lib64/ld-2.14.1.so)
+==14014==    by 0x4013D93: _dl_sysdep_start (in /lib64/ld-2.14.1.so)
+==14014==    by 0x4004E12: _dl_start (in /lib64/ld-2.14.1.so)
+==14014==    by 0x4001647: ??? (in /lib64/ld-2.14.1.so)
+
+
+Note: see also the FAQ in the source distribution.
+It contains workarounds to several common problems.
+In particular, if Valgrind aborted or crashed after
+identifying problems in your program, there's a good chance
+that fixing those problems will prevent Valgrind aborting or
+crashing, especially if it happened in m_mallocfree.c.
+
+If that doesn't help, please report this bug to: www.valgrind.org
+
+In the bug report, send all the above text, the valgrind
+version, and what OS and version you are using.  Thanks.
+

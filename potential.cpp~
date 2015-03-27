@@ -1,0 +1,45 @@
+#include "./classes.h"
+#include "./potential.h"
+
+class potential;
+//typedef double rl;
+
+
+potential::potential(rl in_q,rl in_rc){
+  q=in_q;//set charge
+  rc=in_rc;//set soft core radius
+}
+
+potential::potential(){
+  q=-1.;
+  rc=1.;
+}
+
+rl potential::V(rl x){
+  rl retval= q/sqrt(pow(x,2.)+pow(rc,2.));
+  rl p=rc;
+  rl r=sqrt(pow(x,2)+pow(p,2));
+  //retval+=1./pow(r,2.);
+  //rl Vpseudo=-1.+pow(p,6.)/pow(r,6.)+3.*pow(p,4.)/pow(r,5)-4.*pow(p,4.)/pow(r,4.)-
+  //7.*pow(p,2.)/pow(r,3)+4.*pow(p,2.)/pow(r,2.)+6./r;
+  
+  rl z=x;
+//  rl Vpseudo=pow(p,6.)/pow(r,6.)+4.*pow(p,4.)*pow(z,2.)/pow(r,6.)+
+//    4.*pow(p,2.)*pow(z,4.)/pow(r,6.)-pow(p,2.)*pow(z,2.)/pow(r,5.)+
+//    2.*pow(z,4.)/pow(r,5.);
+//  retval+=Vpseudo;
+  
+  //rl Vpseudo=3.*abs(z)+pow(rc,2)*pow(z,2);
+  //retval-=Vpseudo;
+
+  return -retval;
+  //return exp(-pow(x,2));
+  //return pow(x-.1,2)/2.;
+  //return 0.;
+}
+
+cmplx potential::Vecs(rl x, rl recs, rl thetaecs){
+  cmplx rotx=ecsX(x,recs,thetaecs);
+  rl absrotx=real((rotx)*conj(rotx))
+  return q/pow(pow(absrotx,2.)+pow(rc,2.),.5);
+}

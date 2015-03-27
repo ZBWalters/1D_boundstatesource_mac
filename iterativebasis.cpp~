@@ -1,0 +1,43 @@
+//Functions to calculate matrix elements for the iterative temporal basis set.
+//Here F0(x)=(P0(x)-P1(x))/2 is the basis element for the initial condition,
+//while Fn(x)=(P_n(x)+P_{n-1}(x))/2 for n>=1 are basis elements for
+//progressively higher order.  As a particular order Legendre polynomial Ln(x)
+//features in the definition of two consecutive Fn functions, this basis will
+//be tridiagonal rather than orthogonal.  Thus, the corresponding functions will be labelled with the prefix triD
+
+rl triD_U(int n, int m){
+  rl retval=0.;
+  int nmin=min(n,m);
+  int nmax=max(n,m);
+  if(nmin==0){
+    switch(nmax){
+    case 0:
+      retval= 2./3.;
+      break;
+    case 1:
+      retval= 1./3.;
+      break;
+    case 2:
+      retval= -1./6.;
+      break;
+    default:
+      retval= 0.;
+      break;
+    }
+  }
+  else{
+    switch(nmax-nmin){
+    case 0:
+      retval=(2.*nmax)/(4.*pow(nmax,2)-1.);
+      break;
+    case(1):
+      retval= (2./(2.*nmin+1.))/4.;
+      break;
+    default:
+      retval=0.;
+      break;
+    }
+  }
+  cout << "triD_U retval "<<retval<<"\n";
+  return retval;
+}

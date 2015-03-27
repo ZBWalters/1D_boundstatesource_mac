@@ -1,0 +1,144 @@
+#include "./classes.h"
+//#include "./basis.h"
+//#include "./legendrebasis.h"
+//#include "./derivedbasis.h"
+//#include "./globalbasis.h"
+//#include "./pulse.h"
+#include "./wf.h"
+
+int main(){
+  rl Pi=3.14159265358979323846;
+  int ox=5;
+  int ot=10;//20;
+  rl laguerrekappa=1.;//to get rid of single terms of kappa
+  rl ecstheta=Pi/4.;//(Pi/4.);
+
+  rl E0=0.05;
+  rl w0=.0565;
+  rl pulselength=100.*Pi/w0;
+  rl Q=0.;//-1.;
+  rl rho=.1;
+
+  pulse* Pls1=new pulse(E0,w0,pulselength);
+  potential* pot1=new potential(Q,rho);
+
+//  int nelts=200;
+//  int nbdyelts=20;
+//  rl dx=20./nelts;
+ 
+  rl dt=1.e-2;
+  rl Up=pow(E0,2.)/(4.*pow(w0,2.));
+  rl En_kappa=max(10.*Up,2.);//max energy to use in determining element sizes
+  rl deltaphi=Pi/20.;
+  rl ecsbdy=100.;
+  rl ecsbuffer=100.;
+
+  rl accuracygoal=1.e-15;//1.e-15;
+
+  //cout << "setting up globalbasis\n";
+  //globalbasis* gbas=new globalbasis(nelts,nbdyelts,dx,dt,ox,ot,laguerrekappa,ecstheta);
+  //  gbas->ecssetup(nbdyelts,ecstheta);
+  globalbasis* gbas=new globalbasis(pot1,En_kappa,deltaphi, 
+				    ecsbdy, ecsbuffer,dt,ox,ot, 
+				    laguerrekappa,ecstheta);
+  
+  gbas->setupVmats(pot1);
+  gbas->updateHmats(pot1);
+
+  //cmplx* psistart=initializearray(gbas->nbf);
+  //cmplx (*startfun)(rl x)=exp(-pow(x,2));
+  //cmplx* psistart=gbas->psi0setup(gauss);
+  //cout << "psistart\n";
+  //printmat(psistart,gbas->nbf,1);
+
+
+  //cmplx* psinew=initializearray(gbas->nbf);
+
+  wf* sourcewf=new wf(gbas);
+  sourcewf->psi0setup(zH1s,-1.,rho);//for length gauge source term
+  //sourcewf->psi0setup(H1s,-.1,.1);//for velocity gauge source term
+  rl sourceEn=-.5;
+
+//  int nft=256;
+//  rl fftxmin=-20;
+//  rl fftxmax=20.;
+//  cmplx* ftpsi=sourcewf->fouriertransformwf(fftxmin,fftxmax,nft);
+//  cmplx* ftpsi_shifted=sourcewf->wf_fft_postprocess(fftxmin,fftxmax,nft);
+//  rl* ftfreqs=sourcewf->fftfrequencies(fftxmin,fftxmax,nft);
+//  cout << "ftpsi_shifted\n";
+//  printmat(ftpsi_shifted,nft,1);
+//  printmat_formatted("ftpsi.dat",ftpsi,nft,1);
+//  printmat_formatted("ftpsi_shifted.dat",ftpsi_shifted,nft,1);
+//  printmatpair("ftpsi_postprocessed.dat",ftfreqs,ftpsi_shifted,nft);
+
+  //propagated wf starts with value 0.
+  wf* wf1=new wf(gbas);
+  //wf1->psi0setup(H1s,-1.,.1);
+
+//  //cout << "wf1\n";
+//  //wf1->print();
+//  ofstream wffile1 ("wf1.dat");
+//  wffile1 << wf1->printstr();
+//  wffile1.close();
+//
+//  
+//  rl newdt=dt;
+//  //wf1->timestep(0.,dt,pot1,Pls1,sourcewf,sourceEn,accuracygoal,newdt);
+//  dt=1.;
+//  wf1->propagate_iterative_inhomogenous(0.,1.,dt,Pls1,pot1,sourcewf,
+//					sourceEn,accuracygoal);
+//  ofstream wffile2 ("wf2.dat");
+//  wffile2 << wf1->printstr();
+//  wffile2.close();
+
+  ofstream wffile1("wf0.dat");
+  wffile1 << wf1->printstr();
+  wffile1.close();
+  wffile1.clear();
+  rl newdt=dt;
+  //wf1->timestep(0.,dt,pot1,Pls1,sourcewf,sourceEn,accuracygoal,newdt);
+  rl printstep=.01*Pi/w0;
+  rl t0=-.5*Pi/w0;
+  rl t1=t0+printstep;
+  rl tstop=.5*Pi/w0;
+  int printindx=0;
+  while(t0<tstop){
+    wf1->propagate_iterative_inhomogenous(t0,t1,dt,Pls1,pot1,sourcewf,
+					  sourceEn,accuracygoal);
+//    wf1->propagate_iterative(Pls1,pot1,ot,t0,t1,dt,accuracygoal);
+    printindx++;
+    wffile1.open(("wf"+to_string(printindx)+".dat").c_str());
+    wffile1 << wf1->printstr();
+    wffile1.close();
+    wffile1.clear();
+    wf1->printfft("fft"+to_string(printindx)+".dat",Pls1,t1,-ecsbdy*.99,ecsbdy*.99,4096);
+    //wf1->printfft("fft"+to_string(printindx)+".dat",-ecsbdy*.99,ecsbdy*.99,4096);
+    t0=t1;
+    t1=t0+printstep;
+  }
+
+
+
+  //cout << "psif\n";
+  //printmat(wf1->psi,wf1->nbf,1);
+
+
+  //old way
+    //Propagate wf1 for a given time & plot result
+//  wf1->propagate(Pls1,0.,1.,.005,1.e-6);
+//  wf* wf2=wfxt1->psi_f();
+//  ofstream wffile2 ("wf2.dat");
+//  wffile2 << wf1->printstr();
+//  wffile2.close();
+
+
+
+  delete gbas;
+  delete pot1;
+  delete sourcewf;
+  delete wf1;
+  //  delete wf2;
+  //delete wfxt1;
+  delete Pls1;
+
+}

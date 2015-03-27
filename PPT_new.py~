@@ -1,0 +1,23 @@
+#uses formulas from Attosecond correlation dynamics during
+#electron tunnelling from molecules, Z. Walters & O. Smirnova 2010
+
+
+wL=.0565/4.#laser frequency
+F=-0.05#field strength
+Upon=(F**2)/(4*wL**2)#ponderomotive potential
+Ip=.669#0.5#Ionization potential
+gammaKeldysh=(Ip/(2.*Upon))**.5#Keldysh parameter
+tau=gammaKeldysh/wL#tunneling time
+V0=abs(F/wL)
+
+
+def Tion(kf,Ip):
+    ionizationphase=arcsin((1j*sqrt(2.*Ip)-kf)/V0)
+    ionizationtime=ionizationphase/wL
+    return ionizationtime
+
+def vecA(t):
+    return V0*sin(wL*t+0j)
+
+def vel(kf,t):
+    return kf+vecA()

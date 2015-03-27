@@ -1,0 +1,23 @@
+void wf::propagate(pulse* Pls,rl tstart, rl tstop, rl dtstart,rl accuracygoal){
+  wfxt* tmpwfxt = new wfxt(this);
+  tmpwfxt->propagate(Pls,tstart,tstop,dtstart,accuracygoal);
+  delete [] psi;
+  psi=tpwfxt->psi_f_array;
+  delete [] tmpwfxt;
+}
+
+void wfxt::propagate(pulse* Pls,rl tstart,rl tstop,rl dtstart,rl accuracygoal){
+  //starting from a given wavefunction, take quality-controlled steps until
+  //final time has been reached.
+
+  rl t0=tstart;
+  rl t1=t0;
+  rl dt=dtstart;
+  while(t1<tstop){
+    t1=min(tstop,t0+dt);
+    setupnextstep(t0,t1);
+    minimizeaction();
+    rl dtnew=timestep(accuracygoal);
+  }
+  
+}

@@ -1,0 +1,9 @@
+class potential{
+ public:
+  potential();
+  potential(rl q, rl rc); 
+  rl V(rl x);
+  rl rc;
+  rl q;
+ private:
+};

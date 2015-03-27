@@ -1,0 +1,12 @@
+cmplx* __restrict * __restrict integralarray=new cmplx*[ot];
+  for(int n=0;n<ot;n++){
+    integralarray[n]=initializearray(nbf);
+  }
+
+rl** tinttable=tbas->integrationtable(ot);
+  rl* tintpts=tinttable[0];
+  rl* tintwts=tinttable[1];
+
+cmplx* __restrict coeffarray=initializearray(ox*ot);
+cmplx* CTarray=initializearray(ox*ot);//CTarray=coeffarray.tarray
+    cmplx* valarray=initializearray(ox*ot);

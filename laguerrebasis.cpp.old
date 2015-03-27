@@ -1,0 +1,181 @@
+#include "./classes.h"
+#include "./basis.h"
+#include "./laguerrebasis.h"
+
+laguerrebasis::laguerrebasis(int order_in, rl kappa_in){
+  order=order_in;
+  kappa=kappa_in;
+  omat=initializearray(order*order);
+  nablamat=initializearray(order*order);
+  nablasqmat=initializearray(order*order);
+
+
+  int glorder=order;
+  rl* glpts=new rl[glorder];
+  rl* glwts=new rl[glorder];
+
+  //overlap matrix
+  laguerretable(glorder,glpts,glwts);
+  for(int glk=0;glk<glorder;glk++){
+    rl* lvals=laguerrevalues(glorder,glpts[glk]);
+    for(int i=0;i<order;i++){
+      for(int j=0;j<order;j++){
+	omat[arrayindx(i,j,order,order)]+=lvals[i]*lvals[j]*
+	  exp(-2.*abs(kappa*glpts[glk]))*glwts[glk];
+      }
+    }
+    delete [] lvals;
+  }
+
+  //nabla matrix (first derivs)
+  for(int glk=0;glk<glorder;glk++){
+    rl* lvals=laguerrevalues(glorder,glpts[glk]);
+    rl* lpvals=laguerrederivs(glorder,0,1,glpts[glk]);
+    if(kappa >0){//kappa >0 implies that x is less than zero
+      for(int i=0;i<glorder;i++){
+	lpvals[i]*=-1.;
+      }
+    }
+    for(int i=0;i<order;i++){
+      for(int j=0;j<order;j++){
+	nablamat[arrayindx(i,j,order,order)]+=lvals[i]*lpvals[j]*
+	  exp(-2.*abs(kappa*glpts[glk]))*glwts[glk];
+      }
+    }
+    delete [] lvals;
+    delete [] lpvals;
+  }
+
+  //nablasq matrix (2nd derivs)
+  for(int glk=0;glk<glorder;glk++){
+    rl* lvals=laguerrevalues(glorder,glpts[glk]);
+    rl* lpvals=laguerrederivs(glorder,0,2,glpts[glk]);
+    for(int i=0;i<order;i++){
+      for(int j=0;j<order;j++){
+	nablasqmat[arrayindx(i,j,order,order)]+=lvals[i]*lpvals[j]*
+	  exp(-abs(kappa*glpts[glk]))*glwts[glk];
+      }
+    }
+    delete [] lvals;
+    delete [] lpvals;
+  }
+  
+  delete [] glpts;
+  delete [] glwts;
+
+}
+
+laguerrebasis::~laguerrebasis(){
+  delete [] omat;
+  delete [] nablamat;
+  delete [] nablasqmat;
+}
+
+cmplx* laguerrebasis::funcmatrix(cmplx (*func)(rl x), rl (*ytox)(rl y, basis* bas1, basis* bas2), basis* dbasis){
+  cmplx* retmat=initializearray(order*order);
+
+
+  int glorder=2*order;
+  rl* glpts=new rl[glorder];
+  rl* glwts=new rl[glorder];
+  laguerretable(glorder,glpts,glwts);
+  for(int glk=0;glk<glorder;glk++){
+    rl* lvals=laguerrevalues(order,glpts[glk]);
+    for(int i=0;i<order;i++){
+      for(int j=0;j<order;j++){
+	retmat[arrayindx(i,j,order,order)]+=lvals[i]*lvals[j]*glwts[glk]*
+	  func(ytox(glpts[glk],this,dbasis));
+      }
+    }
+  }
+  return retmat;
+}
+
+cmplx* laguerrebasis::evalbasisfuncs(rl y){
+  //return L_n(2 kappa r)* exp(-kappa r), as in 
+  //Scrinzi, PHYSICAL REVIEW A 81, 053845 (2010)
+
+  rl tmpy=2.*abs(kappa*y);
+  cmplx* retvals=evallaguerrefuncs(tmpy);
+  for(int i=0;i<order;i++){
+    retvals[i]*=exp(-abs(kappa*y));
+  }
+  //cout << "laguerre values "<<y<<"\n";
+  //printmat(retvals,order,1);
+
+  return retvals;
+
+}
+
+cmplx* laguerrebasis::evallaguerrefuncs(rl y){
+  rl* lvals=laguerrevalues(order,abs(y));
+  cmplx* retvals=new cmplx[order];
+  for(int i=0;i<order;i++){
+    retvals[i]=lvals[i];
+  }
+  delete [] lvals;
+  return retvals;
+}
+
+rl** laguerrebasis::integrationtable(int glorder){
+  rl* glpts=new rl[glorder];
+  rl* glwts=new rl[glorder];
+  laguerretable(glorder,glpts,glwts);
+  rl** rettable=new rl*[2];
+  rettable[0]=glpts;
+  rettable[1]=glwts;
+  if(kappa>0){
+    rl* negglpts=new rl[glorder];
+    rl* negglwts=new rl[glorder];
+    for(int i=0;i<glorder;i++){
+      negglpts[i]=glpts[glorder-1-i];
+      negglwts[i]=glwts[glorder-1-i];
+    }
+    rettable[0]=negglpts;
+    rettable[1]=negglwts;
+    delete [] glpts;
+    delete [] glwts;
+  }
+  return rettable;
+}
+
+rl laguerrebasis::mapy2range(rl y, rl x1, rl x2){
+  //cout << "laguerre mapy2range\n";
+  //cout << "kappa, y, x1, x2\n";
+  //cout <<kappa<<" "<<y<<" "<<x1<<" "<<x2<<"\n";
+  rl xret=0.;
+  if(kappa>0.){
+    xret=x2-y;
+  }
+  if(kappa<=0.){
+    xret=x1+y;
+  }
+  //cout << "xret "<<xret<<"\n\n";
+  return xret;
+}
+
+rl laguerrebasis::mapfromchildrange(rl childx, rl childxmin, rl childxmax){
+  rl yret=0.;
+  if(kappa>0.){
+    yret=childxmax-childx;
+  }
+  if(kappa<=0.){
+    yret=childx-childxmin;
+  }
+  return yret;
+}
+
+rl laguerrebasis::maptochildrange(rl y, rl childxmin, rl childxmax){
+  rl xret=0.;
+  if(kappa>0.){
+    xret=childxmin+y;
+  }
+  if(kappa<=0.){
+    xret=childxmax-y;
+  }
+  return xret;
+}
+
+rl laguerrebasis::dy2dx(rl x1, rl x2){
+  return 1.;
+}

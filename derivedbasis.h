@@ -1,0 +1,100 @@
+#include "./potential.h"
+#include "./basis.h"
+#include "./legendrebasis.h"
+#include "./laguerrebasis.h"
+
+
+//often, it will be more convenient to work with a derived basis whose basis
+//functions are a linear combination (and possibly a subset) of the primitive
+//basis functions
+class derivedbasis : public basis{
+ public:
+  basis* parentbasis;
+  int parentorder;
+  cmplx* bfmat;//matrix for converting from primitive basis to derived basis
+  //Format of bfmat[i,j] is that i is index of new basis,
+  //j is index of old basis
+  cmplx* Vmat;
+  cmplx* Hmat;
+  rl xmin;
+  rl xmax;
+  bool ecsflag;
+//  rl (*ytox)(rl y);//function to map parent coordinate system into current
+//  //coordinate system
+//  rl (*xtoy)(rl x);//function to map current coordinate system into parent
+//  //coordinate system
+  
+  ~derivedbasis();
+  derivedbasis();
+  derivedbasis(basis* bs_in, cmplx* bfmat_in, 
+	       int neworder);
+  derivedbasis(legendrebasis* bs_in, cmplx* bfmat_in, 
+	       int neworder, rl xmin_in, rl xmax_in);
+  derivedbasis(laguerrebasis* bs_in, cmplx* bfmat_in, int neworder, rl Rlag);
+  cmplx* evalbasisfuncs(rl x);
+  cmplx evalcoeffvector(cmplx* coeffvector, rl x);
+  str printstr(cmplx* coeffvector);
+  str printstr(int printorder,cmplx* coeffvector);
+  cmplx* funcmatrix(cmplx (*func)(rl x), rl (*ytox)(rl y, basis* bas1, 
+						    basis* bas2),basis* dbasis);
+  cmplx* functimespsi(cmplx (*func)(rl x), cmplx* psi);
+  cmplx* funcvector(cmplx (*func)(rl x));
+  cmplx* funcvector(cmplx (*func)(rl x, rl y),rl param);
+  cmplx* funcolap(cmplx (*func)(rl x));
+  cmplx* funcolap(cmplx (*func)(rl x, rl y),rl param);
+  rl** integrationtable(int glorder);
+  void Vmatsetup(potential* pot);
+  void Vmatsetup(potential* pot, rl tol);
+  void ecsrotate(rl theta);
+  void ecsrotate(rl theta,potential* pot,rl ecsbdy,rl ecstheta);
+  void updateHmat(potential* pot);
+  cmplx* hmatsetup();
+  rl mapy2range(rl y, rl x1, rl x2);
+  rl mapfromchildrange(rl childx, rl childxmin, rl childxmax);
+  rl maptochildrange(rl y, rl childxmin, rl childxmax);
+  rl dy2dx(rl x1, rl x2);
+  rl innerproduct(cmplx* psi1, cmplx* psi2);
+  rl norm(cmplx* psi);
+
+  cmplx* Olappsi(cmplx* psi_in);
+  cmplx* Hpsi(cmplx* psi_in);
+  cmplx* Vpsi(cmplx* psi_in);
+  cmplx* Xmatpsi(cmplx* Xmat,cmplx* psi_in);
+
+  cmplx* integrateVmat_testconvergence(potential* pot, rl x1, 
+				       rl x2,  rl tol);
+  cmplx* integrateVmat(potential* pot, rl x1, 
+		       rl x2, int nintervals);
+  cmplx* integrateVmat(potential* pot, rl x1, rl x2);
+  cmplx* integrateVmat(potential* pot, rl x1, rl x2, rl ecsbdy, rl ecstheta);
+  cmplx* integratefuncmat(cmplx (*func)(rl x));
+
+  //functions for mapping between basis coordinate systems
+  virtual rl ytox(rl y, legendrebasis* lbas);
+  virtual rl ytox(rl y, derivedbasis* dbas1);
+  virtual rl ytox(rl y, laguerrebasis* lagbas);
+  virtual rl ytox(rl y, basis* bas);
+  	  
+  virtual rl dytodx(legendrebasis* lbas);
+  virtual rl dytodx(derivedbasis* dbas1);
+  virtual rl dytodx(laguerrebasis* lagbas);
+  virtual rl dytodx(basis* bas);
+  	  
+  virtual rl xtoy(rl x, legendrebasis* lbas);
+  virtual rl xtoy(rl x, derivedbasis* dbas1);
+  virtual rl xtoy(rl x, laguerrebasis* lagbas);
+  virtual rl xtoy(rl x, basis* bas);
+
+
+
+//  //coordinate change functions
+//  rl xtoy_derived(rl x);
+//  rl ytox_derived(rl x);
+//
+//  rl xtoy_legendre(rl x);
+//  rl ytox_legendre(rl x);
+//
+//  rl xtoy_laguerre(rl x);
+//  rl ytox_laguerre(rl x);
+
+};

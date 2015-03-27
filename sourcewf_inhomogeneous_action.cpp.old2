@@ -1,0 +1,74 @@
+#include "./classes.h"
+#include "./wf.h"
+
+cmplx* __restrict * __restrict wf::inhomogeneous_action(rl En, temporalbasis* tbas){
+  //return -Amat.pmat.wf+Asqmat.olap.wf -- ie, the inhomogenous source term
+  //for the least action equation
+  
+
+  int ot=tbas->order;
+  //calculate P.psi for A.p terms
+  cmplx* __restrict pwf=gbas->ppsi(psi);
+  cmplx* __restrict opwf=gbas->Olappsi(pwf);
+  //calculate Olap.psi for A^2 term
+  cmplx* __restrict olapwf=gbas->Olappsi(psi);
+  cmplx* __restrict olapsqwf=gbas->Olappsi(olapwf);
+  cmplx* __restrict powf=gbas->ppsi(olapwf);
+  //the time evolution of the bound state is given by Exp(-I E0 t)
+  cmplx* __restrict Eiwtvec=tbas->funcvector(ExpIwt,En);
+
+  
+
+  //call zgemv to find Amat.ExpIwtvector
+  cmplx* __restrict AdotEiwt=initializearray(tbas->order);
+  cmplx* __restrict AsqdotEiwt=initializearray(tbas->order);
+  cmplx alpha=1.;
+  cmplx beta=0.;
+  cblas_zgemv(CblasColMajor,CblasNoTrans,ot,ot,
+	      &alpha,tbas->Amat,ot,Eiwtvec,1,&beta,AdotEiwt,1);
+
+//  cblas_zgemv(CblasColMajor,CblasNoTrans,ot,ot,
+//	      &alpha,tbas->Amat,ot,AdotEiwt,1,&beta,AsqdotEiwt,1);
+  
+  cblas_zgemv(CblasColMajor,CblasNoTrans,ot,ot,
+	      &alpha,tbas->Asqmat,ot,Eiwtvec,1,&beta,AsqdotEiwt,1);
+
+  //cout <<"Eiwtvec\n";
+  //printmat(Eiwtvec,1,ot);
+  //cout <<"AdotEiwt\n";
+  //printmat(AdotEiwt,1,ot);
+  //cout <<"AsqdotEiwt";
+  //printmat(AsqdotEiwt,1,ot);
+
+  //return A.p.psi.e^(-I w0 t)-1/2 Asq.Olap.psi..e^(-I w0 t)
+  cmplx* __restrict * __restrict retactionarray=new cmplx* __restrict [ot];
+  for(int n=0;n<ot;n++){
+    //cmplx* __restrict tmparraypa=arraymultiply(powf,nbf,AdotEiwt[n]);
+    //cmplx* __restrict tmparrayap=arraymultiply(opwf,nbf,AdotEiwt[n]);
+    //cmplx* __restrict tmparrayaa=arraymultiply(olapsqwf,nbf,AsqdotEiwt[n]);
+    //cmplx* __restrict tmpsum=initializearray(nbf);
+    cmplx* __restrict tmparraypa=arraymultiply(pwf,nbf,AdotEiwt[n]);
+    cmplx* __restrict tmparrayap=arraymultiply(pwf,nbf,AdotEiwt[n]);
+    cmplx* __restrict tmparrayaa=arraymultiply(psi,nbf,AsqdotEiwt[n]);
+    cmplx* __restrict tmpsum=initializearray(nbf);
+    for(int i=0;i<nbf;i++){
+      tmpsum[i]=0.5*(tmparraypa[i]+tmparrayap[i]-tmparrayaa[i]);
+      //tmpsum[i]-=0.5*tmparray2[i];//add the two arrays
+    }
+    retactionarray[n]=tmpsum;
+    delete [] tmparraypa;
+    delete [] tmparrayap;
+    delete [] tmparrayaa;
+  }
+
+  delete [] pwf;
+  delete [] opwf;
+  delete [] powf;
+  delete [] olapwf;
+  delete [] olapsqwf;
+  delete [] Eiwtvec;
+  delete [] AdotEiwt;
+  delete [] AsqdotEiwt;
+
+  return retactionarray;
+}

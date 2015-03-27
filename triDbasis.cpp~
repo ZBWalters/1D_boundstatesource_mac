@@ -1,0 +1,601 @@
+#include "./classes.h"
+//Functions to calculate matrix elements for the iterative temporal basis set.
+//Here F0(x)=(P0(x)-P1(x))/2 is the basis element for the initial condition,
+//while Fn(x)=(P_n(x)+P_{n-1}(x))/2 for n>=1 are basis elements for
+//progressively higher order.  As a particular order Legendre polynomial Ln(x)
+//features in the definition of two consecutive Fn functions, this basis will
+//be tridiagonal rather than orthogonal.  Thus, the corresponding functions will be labelled with the prefix triD
+
+rl triD_U(int n, int m, rl dt){
+  return triD_U(n,m)*dt/2.;//map overlap to new interval
+}
+
+rl triD_U(int n, int m){
+  rl retval=0.;
+  int nmin=min(n,m);
+  int nmax=max(n,m);
+  if(nmin==0){
+    switch(nmax){
+    case 0:
+      retval= 2./3.;
+      break;
+    case 1:
+      retval= 1./3.;
+      break;
+    case 2:
+      retval= -1./6.;
+      break;
+    default:
+      retval= 0.;
+      break;
+    }
+  }
+  else{
+    switch(nmax-nmin){
+    case 0:
+      retval=(2.*nmax)/(4.*pow(nmax,2)-1.);
+      break;
+    case(1):
+      retval= (2./(2.*nmin+1.))/4.;
+      break;
+    default:
+      retval=0.;
+      break;
+    }
+  }
+  //cout << "triD_U retval "<<retval<<"\n";
+  return retval;
+}
+
+rl triD_Q(int n, int m, rl dt){
+  return triD_Q(n,m);//not affected by change in integration interval
+}
+
+rl triD_Q(int n, int m){
+  rl retval=0.;
+  //1 if n>m, 0 otherwise
+  if(n>m){
+    retval=1.;
+  }
+  if(n==m){
+    retval=1./2.;
+  }
+  //special case if m=0, where F0(x)=(P0(x)-P1(x))
+  if(m==0){
+    if(n==1){
+      retval=1./2.;
+    }
+    else{
+      retval=0.;
+    }
+  }
+
+  //second special case: if n=0, Q_00 and Q_01 will be nonzero
+  if(n==0){
+    if(m==0){
+      retval=-1./2.;
+    }
+    if(m==1){
+      retval=-1./2.;
+    }
+  }
+  //cout << "triD_Q retval "<<retval<<"\n";
+  return retval;
+}
+
+cmplx* triD_basischange(int order){
+  //Here F0(x)=(P0(x)-P1(x))/2 is the basis element for the initial condition,
+  //while Fn(x)=(P_n(x)+P_{n-1}(x))/2 for n>=1 are basis elements for
+  //progressively higher order.  As a particular order Legendre polynomial Ln(x)
+  //features in the definition of two consecutive Fn functions, this basis will
+  //be tridiagonal rather than orthogonal.
+  cmplx* retmat=initializearray(order*order);
+
+  //zeroth basis function
+  int i=0;
+  int j=0;
+  retmat[arrayindx(i,j,order,order)]=0.5;
+  j=1;
+  retmat[arrayindx(i,j,order,order)]=-0.5;
+
+  for(int i=1;i<order;i++){
+    retmat[arrayindx(i,i,order,order)]=0.5;
+    retmat[arrayindx(i,i-1,order,order)]=0.5;
+  }
+  return retmat;
+}
+
+cmplx* triD_Umat(int order){
+  cmplx* __restrict Umat=new cmplx[order*order];
+  for(int n=0;n<order;n++){
+    for(int m=0;m<order;m++){
+      Umat[arrayindx(n,m,order,order)]=triD_U(n,m);
+    }
+  }
+  return Umat;
+}
+
+cmplx* triD_Qmat(int order){
+  cmplx* __restrict Qmat=new cmplx[order*order];
+  for(int n=0;n<order;n++){
+    for(int m=0;m<order;m++){
+      Qmat[arrayindx(n,m,order,order)]=triD_Q(m,n);
+    }
+  }
+  return Qmat;
+}
+
+cmplx* triD_Uinv(int order){
+  //return inverse of tridiagonal overlap matrix (not including factor of dt).
+  //cout << "inside triD_Uinv\t"<<order<<"\n";
+  cmplx* Uinv=triD_Umat(order);
+  int info=0;
+  int* ipiv=new int[order];
+  zgetrf_(&order, &order, reinterpret_cast <Lcmplx*> (Uinv), &order, ipiv, &info);
+  if(info!=0){
+    cout << "problem with zgetrf_ in triD_Uinv!\n";
+  }
+  int lwork=-1;
+  cmplx* tmpwork=new cmplx[1];
+  zgetri_(&order, reinterpret_cast <Lcmplx*> (Uinv), &order, ipiv,
+		  reinterpret_cast <Lcmplx*> (tmpwork), &lwork, &info);
+  if(info!=0){
+    cout << "problem with zgetri_ #1 in triD_Uinv!\n";
+  }
+  lwork=int(real(tmpwork[0]));
+  //cout << "lwork\t"<<lwork<<"\n";
+  delete [] tmpwork;
+  cmplx* work=new cmplx[lwork];
+  zgetri_(&order, reinterpret_cast <Lcmplx*> (Uinv), &order, ipiv,
+		  reinterpret_cast <Lcmplx*> (work), &lwork, &info);
+  if(info!=0){
+    cout << "problem with zgetri_ #2 in triD_Uinv!\n";
+  }
+  //cout << "back from zgetri_\n";
+  delete [] ipiv;
+  //cout << "deleted ipiv\n";
+  delete [] work;
+  //cout << "returning from triD_Uinv\n";
+  return Uinv;
+}
+
+cmplx* triD_QUevals(int ot){
+  //return generalized eigenvalues of Q_R v = lambda U_R v, where Q_R and U_R
+  //are found in the tridiagonal basis excluding the zeroth order basis
+  //function (derivative of a constant is zero, so Q is only invertible if you
+  //exclude the zeroth order function)
+
+  cmplx* __restrict Q_red=initializearray((ot-1)*(ot-1));
+  cmplx* __restrict U_red=initializearray((ot-1)*(ot-1));
+  
+  for(int i=1;i<ot;i++){
+    for(int j=1;j<ot;j++){
+      Q_red[arrayindx(i-1,j-1,ot-1,ot-1)]=triD_Q(i,j);
+      U_red[arrayindx(i-1,j-1,ot-1,ot-1)]=triD_U(i,j);
+    }
+  }
+  
+
+  //call zggev_ to find eigenvalues
+  int info=0;
+  int nmat=ot-1;
+  cmplx* __restrict alpha=new cmplx[nmat];
+  cmplx* __restrict beta=new cmplx[nmat];
+  cmplx* VL=new cmplx[nmat];//not referenced
+  cmplx* VR=new cmplx[nmat];//not referenced
+  int ldvl=1;
+  int ldvr=1;
+  cmplx* tmpwork=new cmplx[1];
+  int lwork=-1;
+  rl* rwork=new rl[8*nmat];
+  char JOBVL='N';
+  char JOBVR='N';
+  zggev_(&JOBVL, &JOBVR, &nmat, reinterpret_cast <Lcmplx*> (Q_red), &nmat,
+		  reinterpret_cast <Lcmplx*> (U_red), &nmat, reinterpret_cast
+		  <Lcmplx*> (alpha), reinterpret_cast <Lcmplx*> (beta),
+		  reinterpret_cast <Lcmplx*> (VL), &ldvl, reinterpret_cast
+		  <Lcmplx*> (VR), &ldvr,  reinterpret_cast <Lcmplx*> (tmpwork),
+		  &lwork, rwork, &info);
+  if(info!=0){
+    cout << "problem with zggev_ 1st call in QUevals!\n";
+  }
+  lwork=int(real(tmpwork[0]));
+  delete [] tmpwork;
+  cmplx* work=new cmplx[lwork];
+  zggev_(&JOBVL, &JOBVR, &nmat, reinterpret_cast <Lcmplx*> (Q_red), &nmat,
+		  reinterpret_cast <Lcmplx*> (U_red), &nmat, reinterpret_cast
+		  <Lcmplx*> (alpha), reinterpret_cast <Lcmplx*> (beta),
+		  reinterpret_cast <Lcmplx*> (VL), &ldvl, reinterpret_cast
+		  <Lcmplx*> (VR), &ldvr,  reinterpret_cast <Lcmplx*> (work),
+		  &lwork, rwork, &info);
+  if(info!=0){
+    cout << "problem with zggev_ 2nd call in QUevals!\n";
+  }
+
+  //evals[i]=alpha[i]/beta[i]
+  cmplx* __restrict evals=new cmplx[nmat];
+  for(int i=0;i<nmat;i++){
+    evals[i]=alpha[i]/beta[i];
+  }
+
+  //delete temporary arrays
+  delete [] Q_red;
+  delete [] U_red;
+  delete [] VL;
+  delete [] VR;
+  delete [] work;
+  delete [] rwork;
+  delete [] alpha;
+  delete [] beta;
+
+  return evals;
+}
+
+cmplx* triD_QUevecs(int ot){
+  //return generalized right eigenvectors of Q_R v = lambda U_R v, where Q_R
+  //and U_R are found in the tridiagonal basis excluding the zeroth order
+  //basis function (derivative of a constant is zero, so Q is only invertible
+  //if you exclude the zeroth order function)
+
+  cmplx* __restrict Q_red=initializearray((ot-1)*(ot-1));
+  cmplx* __restrict U_red=initializearray((ot-1)*(ot-1));
+  
+  for(int i=1;i<ot;i++){
+    for(int j=1;j<ot;j++){
+      Q_red[arrayindx(i-1,j-1,ot-1,ot-1)]=triD_Q(i,j);
+      U_red[arrayindx(i-1,j-1,ot-1,ot-1)]=triD_U(i,j);
+    }
+  }
+
+  //call zggev_ to find eigenvectors
+  int info=0;
+  int nmat=ot-1;
+  cmplx* __restrict alpha=new cmplx[nmat];
+  cmplx* __restrict beta=new cmplx[nmat];
+  cmplx* VL=new cmplx[nmat];//not referenced
+  int ldvl=1;
+  int ldvr=nmat;
+  cmplx* VR=new cmplx[ldvr*nmat];//not referenced
+  cmplx* tmpwork=new cmplx[1];
+  int lwork=-1;
+  rl* rwork=new rl[8*nmat];
+  char JOBVL='N';
+  char JOBVR='V';
+  zggev_(&JOBVL, &JOBVR, &nmat, reinterpret_cast <Lcmplx*> (Q_red), &nmat,
+		  reinterpret_cast <Lcmplx*> (U_red), &nmat, reinterpret_cast
+		  <Lcmplx*> (alpha), reinterpret_cast <Lcmplx*> (beta),
+		  reinterpret_cast <Lcmplx*> (VL), &ldvl, reinterpret_cast
+		  <Lcmplx*> (VR), &ldvr,  reinterpret_cast <Lcmplx*> (tmpwork),
+		  &lwork, rwork, &info);
+  if(info!=0){
+    cout << "problem with zggev_ 1st call in QUevals!\n";
+  }
+  lwork=int(real(tmpwork[0]));
+  delete [] tmpwork;
+  cmplx* work=new cmplx[lwork];
+  zggev_(&JOBVL, &JOBVR, &nmat, reinterpret_cast <Lcmplx*> (Q_red), &nmat,
+		  reinterpret_cast <Lcmplx*> (U_red), &nmat, reinterpret_cast
+		  <Lcmplx*> (alpha), reinterpret_cast <Lcmplx*> (beta),
+		  reinterpret_cast <Lcmplx*> (VL), &ldvl, reinterpret_cast
+		  <Lcmplx*> (VR), &ldvr,  reinterpret_cast <Lcmplx*> (work),
+		  &lwork, rwork, &info);
+  if(info!=0){
+    cout << "problem with zggev_ 2nd call in QUevals!\n";
+  }
+
+
+
+  //delete temporary arrays
+  delete [] Q_red;
+  delete [] U_red;
+  delete [] VL;
+  delete [] work;
+  delete [] rwork;
+  delete [] alpha;
+  delete [] beta;
+
+  return VR;
+}
+
+
+
+cmplx** triD_QUeigensystem(int ot){
+  //return generalized right eigenvectors of Q_R v = lambda U_R v, where Q_R
+  //and U_R are found in the tridiagonal basis excluding the zeroth order
+  //basis function (derivative of a constant is zero, so Q is only invertible
+  //if you exclude the zeroth order function)
+
+  cmplx* __restrict Q_red=initializearray((ot-1)*(ot-1));
+  cmplx* __restrict U_red=initializearray((ot-1)*(ot-1));
+  
+  for(int i=1;i<ot;i++){
+    for(int j=1;j<ot;j++){
+      Q_red[arrayindx(i-1,j-1,ot-1,ot-1)]=triD_Q(j,i);
+      U_red[arrayindx(i-1,j-1,ot-1,ot-1)]=triD_U(j,i);
+    }
+  }
+
+  //cout << "Q_red\n";
+  //printmat(Q_red,ot-1,ot-1);
+  //cout << "U_red\n";
+  //printmat_scipy(U_red,ot-1,ot-1);
+
+  //call zggev_ to find eigenvectors
+  int info=0;
+  int nmat=ot-1;
+  cmplx* __restrict alpha=new cmplx[nmat];
+  cmplx* __restrict beta=new cmplx[nmat];
+  int ldvl=nmat;
+  int ldvr=nmat;
+  cmplx* VL=new cmplx[ldvr*nmat];//not referenced
+  cmplx* VR=new cmplx[ldvr*nmat];//not referenced
+  cmplx* tmpwork=new cmplx[1];
+  int lwork=-1;
+  rl* rwork=new rl[8*nmat];
+  char JOBVL='V';
+  char JOBVR='V';
+  zggev_(&JOBVL, &JOBVR, &nmat, reinterpret_cast <Lcmplx*> (Q_red), &nmat,
+		  reinterpret_cast <Lcmplx*> (U_red), &nmat, reinterpret_cast
+		  <Lcmplx*> (alpha), reinterpret_cast <Lcmplx*> (beta),
+		  reinterpret_cast <Lcmplx*> (VL), &ldvl, reinterpret_cast
+		  <Lcmplx*> (VR), &ldvr,  reinterpret_cast <Lcmplx*> (tmpwork),
+		  &lwork, rwork, &info);
+  if(info!=0){
+    cout << "problem with zggev_ 1st call in QUevals!\n";
+  }
+  lwork=int(real(tmpwork[0]));
+  delete [] tmpwork;
+  cmplx* work=new cmplx[lwork];
+  zggev_(&JOBVL, &JOBVR, &nmat, reinterpret_cast <Lcmplx*> (Q_red), &nmat,
+		  reinterpret_cast <Lcmplx*> (U_red), &nmat, reinterpret_cast
+		  <Lcmplx*> (alpha), reinterpret_cast <Lcmplx*> (beta),
+		  reinterpret_cast <Lcmplx*> (VL), &ldvl, reinterpret_cast
+		  <Lcmplx*> (VR), &ldvr,  reinterpret_cast <Lcmplx*> (work),
+		  &lwork, rwork, &info);
+  if(info!=0){
+    cout << "problem with zggev_ 2nd call in QUevals!\n";
+  }
+
+  //evals[i]=alpha[i]/beta[i]
+  cmplx* __restrict evals=new cmplx[nmat];
+  for(int i=0;i<nmat;i++){
+    evals[i]=alpha[i]/beta[i];
+  }
+
+  //cout << "evals\n";
+  //printmat(evals,ot-1,1);
+  //cout << "VR\n";
+  //printmat_scipy(VR,ot-1,ot-1);
+  //cout << "VL\n";
+  //printmat_scipy(VL,ot-1,ot-1);
+
+  //normalize VL & VR s.t. Lvec_i**H.U_red.Rvec_j=delta_ij
+  //U_red has been overwritten during LAPACK call & needs to be recalculated
+  for(int i=1;i<ot;i++){
+    for(int j=1;j<ot;j++){
+      U_red[arrayindx(i-1,j-1,ot-1,ot-1)]=triD_U(i,j);
+    }
+  }
+  cmplx* tmparray1=initializearray(nmat*nmat);
+  cmplx aleph=1.;
+  cmplx bet=0.;
+  cblas_zgemm(CblasColMajor,CblasConjTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+	      VL,nmat,U_red,nmat,&bet,tmparray1,nmat);
+  cmplx* iparray=initializearray(nmat*nmat);//array of inner products
+  cblas_zgemm(CblasColMajor,CblasNoTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+	      tmparray1,nmat,VR,nmat,&bet,iparray,nmat);
+  //cout << "inner product array\n";
+  //printmat(iparray,nmat,nmat);
+
+  //use inner products to normalize VR and VL
+  for(int n=0;n<nmat;n++){
+    rl norm=sqrt(abs(iparray[arrayindx(n,n,nmat,nmat)]));
+      for(int m=0;m<nmat;m++){
+	VL[arrayindx(m,n,nmat,nmat)]/=norm;
+	VR[arrayindx(m,n,nmat,nmat)]/=norm;
+      }
+  }
+  //test normalization
+  //cblas_zgemm(CblasColMajor,CblasConjTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+  //	      VL,nmat,U_red,nmat,&bet,tmparray1,nmat);
+  //cblas_zgemm(CblasColMajor,CblasNoTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+  //	      tmparray1,nmat,VR,nmat,&bet,iparray,nmat);
+  //cout << "inner product array 2\n";
+  //printmat(iparray,nmat,nmat);
+
+
+  delete [] iparray;
+  delete [] tmparray1;
+  
+
+
+  cmplx** retarray=new cmplx*[3];
+  retarray[0]=evals;
+  retarray[1]=VL;
+  retarray[2]=VR;
+
+  //delete temporary arrays
+  delete [] Q_red;
+  delete [] U_red;
+  delete [] work;
+  delete [] rwork;
+  delete [] alpha;
+  delete [] beta;
+
+  return retarray;
+}
+
+cmplx* __restrict * __restrict padeigenvectors(int ot,cmplx* __restrict VR){
+  //eigensystem solves for eigenvectors in reduced space of levels 1 to n.
+  //This routine pads out the matrix of eigenvectors by putting zeros in level
+  //0, yielding vectors with length ot rather than ot-1
+
+  int nev=ot-1;//number of eigenvectors is still ot-1
+
+  //cout << "padeigenvectors input mat\n";
+  //printmat(VR,nev,nev);
+
+
+  cmplx* __restrict * __restrict retarray=new cmplx*[nev];
+  for(int n=0;n<nev;n++){
+    retarray[n]=initializearray(ot);
+  }
+  for(int n=0;n<nev;n++){
+    for(int m=0;m<nev;m++){
+      //retarray[n][m+1]=VR[arrayindx(n,m,nev,nev)];
+      retarray[n][m+1]=VR[arrayindx(m,n,nev,nev)];
+    }
+    //cout << "evec\t"<<n<<"\n";
+    //printmat(retarray[n],ot,1);
+  }
+  return retarray;
+
+}
+
+
+cmplx** generalized_eigensystem_reduced(int ot, cmplx* __restrict M1, 
+					cmplx* __restrict M2){
+  //return generalized right eigenvectors of 
+  //\tilde{M1} v = lambda \tilde{M2} v, 
+  //where \tilde{M} is M[1:,1:] -- M with the zeroth row and column 
+  //stripped out.
+  //The motivation for finding such an eigensystem is that in the tridiagonal
+  //temporal basis, \tilde{Q} and \tilde{U} are invertible, while Q is not.
+
+  cmplx* __restrict M1_red=initializearray((ot-1)*(ot-1));
+  cmplx* __restrict M2_red=initializearray((ot-1)*(ot-1));
+  
+  for(int i=1;i<ot;i++){
+    for(int j=1;j<ot;j++){
+      M1_red[arrayindx(i-1,j-1,ot-1,ot-1)]=M1[arrayindx(i,j,ot,ot)];
+      M2_red[arrayindx(i-1,j-1,ot-1,ot-1)]=M2[arrayindx(i,j,ot,ot)];
+    }
+  }
+
+  //cout << "M1_red\n";
+  //printmat(M1_red,ot-1,ot-1);
+  //cout << "M2_red\n";
+  //printmat_scipy(M2_red,ot-1,ot-1);
+
+  //call zggev_ to find eigenvectors
+  int info=0;
+  int nmat=ot-1;
+  cmplx* __restrict alpha=new cmplx[nmat];
+  cmplx* __restrict beta=new cmplx[nmat];
+  int ldvl=nmat;
+  int ldvr=nmat;
+  cmplx* VL=new cmplx[ldvr*nmat];//not referenced
+  cmplx* VR=new cmplx[ldvr*nmat];//not referenced
+  cmplx* tmpwork=new cmplx[1];
+  int lwork=-1;
+  rl* rwork=new rl[8*nmat];
+  char JOBVL='V';
+  char JOBVR='V';
+  zggev_(&JOBVL, &JOBVR, &nmat, reinterpret_cast <Lcmplx*> (M1_red), &nmat,
+		  reinterpret_cast <Lcmplx*> (M2_red), &nmat, reinterpret_cast
+		  <Lcmplx*> (alpha), reinterpret_cast <Lcmplx*> (beta),
+		  reinterpret_cast <Lcmplx*> (VL), &ldvl, reinterpret_cast
+		  <Lcmplx*> (VR), &ldvr, reinterpret_cast <Lcmplx*> (tmpwork),
+		  &lwork, rwork, &info);
+  if(info!=0){
+    cout << "problem with zggev_ 1st call in QUevals!\n";
+  }
+  lwork=int(real(tmpwork[0]));
+  delete [] tmpwork;
+  cmplx* work=new cmplx[lwork];
+  zggev_(&JOBVL,&JOBVR,&nmat,M1_red,&nmat,M2_red,&nmat,alpha,beta,
+	VL,&ldvl,VR,&ldvr,work,&lwork,rwork,&info);
+  if(info!=0){
+    cout << "problem with zggev_ 2nd call in QUevals!\n";
+  }
+
+  //evals[i]=alpha[i]/beta[i]
+  cmplx* __restrict evals=new cmplx[nmat];
+  for(int i=0;i<nmat;i++){
+    evals[i]=alpha[i]/beta[i];
+  }
+
+  //cout << "evals\n";
+  //printmat(evals,ot-1,1);
+  //cout << "VR\n";
+  //printmat_scipy(VR,ot-1,ot-1);
+  //cout << "VL\n";
+  //printmat_scipy(VL,ot-1,ot-1);
+
+  //normalize VL & VR s.t. Lvec_i**H.U_red.Rvec_j=delta_ij
+  //U_red has been overwritten during LAPACK call & needs to be recalculated
+  for(int i=1;i<ot;i++){
+    for(int j=1;j<ot;j++){
+      M2_red[arrayindx(i-1,j-1,ot-1,ot-1)]=M2[arrayindx(i,j,ot,ot)];
+    }
+  }
+  cmplx* tmparray1=initializearray(nmat*nmat);
+  cmplx aleph=1.;
+  cmplx bet=0.;
+  cblas_zgemm(CblasColMajor,CblasConjTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+	      VL,nmat,M2_red,nmat,&bet,tmparray1,nmat);
+  cmplx* iparray=initializearray(nmat*nmat);//array of inner products
+  cblas_zgemm(CblasColMajor,CblasNoTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+	      tmparray1,nmat,VR,nmat,&bet,iparray,nmat);
+  //cout << "inner product array\n";
+  //printmat(iparray,nmat,nmat);
+
+  //use inner products to normalize VR and VL
+  for(int n=0;n<nmat;n++){
+    rl norm=sqrt(abs(iparray[arrayindx(n,n,nmat,nmat)]));
+      for(int m=0;m<nmat;m++){
+	VL[arrayindx(m,n,nmat,nmat)]/=norm;
+	VR[arrayindx(m,n,nmat,nmat)]/=norm;
+      }
+  }
+  //test normalization
+  //cblas_zgemm(CblasColMajor,CblasConjTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+  //	      VL,nmat,M2_red,nmat,&bet,tmparray1,nmat);
+  //cblas_zgemm(CblasColMajor,CblasNoTrans,CblasNoTrans,nmat,nmat,nmat,&aleph,
+  //	      tmparray1,nmat,VR,nmat,&bet,iparray,nmat);
+  //cout << "inner product array 2\n";
+  //printmat(iparray,nmat,nmat);
+
+
+  delete [] iparray;
+  delete [] tmparray1;
+  
+
+
+  cmplx** retarray=new cmplx*[3];
+  retarray[0]=evals;
+  retarray[1]=VL;
+  retarray[2]=VR;
+
+  //delete temporary arrays
+  delete [] M1_red;
+  delete [] M2_red;
+  delete [] work;
+  delete [] rwork;
+  delete [] alpha;
+  delete [] beta;
+
+  return retarray;
+}
+
+
+
+
+//cmplx* ICvec_triD(int order){
+//  //find temporal vector vec of initial conditions s.t. U.vec={1,0,0,0,....}.
+//  //This will have the effect that H.U.(psi0 x vec) will be zero for orders
+//  //higher than 0, so that the rhs of the least action equation (i Olap Q-H
+//  //U).psixt=R will have no terms of the form H.psi which need to be
+//  //eliminated.  Using this initial condition, H will only ever need to be
+//  //inverted to solve for a particular residual, and there will be no repeated
+//  //multiplication by H.  This should improve the treatment of high energy
+//  //eigenvalues.
+//
+//  cmplx* icvec=initializearray(order);
+//  icvec[0]=1.;
+//  //set Uicvec=U.icvec
+//  cmplx* Uicvec=initializearray(order);
+//  cmplx alpha=1.;
+//  cmplx beta=0.;
+//  cblas_zgemv(CblasColMajor,CblasNoTrans,order,order,alpha, A, LDA, X, INCX, BETA, Y, INCY);
+//}

@@ -1,0 +1,25 @@
+This is a variant of the 1D least action propagator code which propagates the
+deviation from a field-free source wavefunction.  Thus, in addition to the
+action accumulated due to the Hamiltonian, there will be a time dependent
+inhomogeneous source term due to the action of the field on the field free
+wavefunction.  
+
+The motivation for setting things up in this way is that we would like to find
+the tunnel ionization from a 1D slice of a field free wavefunction.  Since the
+1D slice does not have enough information to treat the bound state
+wavefunction correctly, we will simply take it as a given:
+H0 psi0 = E0 psi0
+and solve for the deviation
+i d/dt (psi0 + dpsi)=(H0+delta H)(psi0+dpsi)
+
+Substituting the Ansatz that psi0(t)=psi0(0)Exp(- i E0 t), this yields
+
+i d/dt(dpsi)=(H0+delta H)dpsi + (delta H) psi0(0)exp(-i E0 t)
+
+so that the bound wavefunction appears as an inhomogeneous source term.
+
+Conceptually, this is very similar to PPT theory, except that we're no longer
+using the stationary phase approximation to approximate U(t,t') and (for the
+moment) we're just looking at a 1D slice.  In the end, this will yield
+
+dpsi(t)=\int_{t0}^{t} dt' U(t,t') psi0(t)

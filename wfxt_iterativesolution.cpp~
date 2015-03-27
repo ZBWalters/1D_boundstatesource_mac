@@ -1,0 +1,123 @@
+#include "./classes.h"
+#include "./wf.h"
+
+cmplx** wfxt::triD_iterativesolution(cmplx* psi0, int nmax, rl dt){
+  //initialize guessxt, residxt
+  //gbas->updateHmats();
+
+  cmplx** guessxt=new cmplx*[nmax];
+  cmplx** residxt=new cmplx*[nmax];
+  for(int i=0;i<nmax;i++){
+    guessxt[i]=initializearray(nbf);
+    residxt[i]=initializearray(nbf);
+  }
+
+  //initial guess is that psixt=psi0 x F0
+  triD_applyupdate(0,psi0,guessxt,residxt,dt);
+
+  return guessxt;
+}
+
+void wfxt::correctioncycle(int n, cmplx** guessxt, cmplx** residxt, rl dt){
+  //correct for the residual of order n, update guessxt and residxt, then do
+  //the same thing for order n-1 until you've reached n=1
+  cmplx* deltapsin=residualcorrection(n,guessxt,residxt,dt);
+  triD_applyupdate(n,deltapsin,guessxt,residxt,dt);
+  delete [] deltapsin;
+  if(n>1){
+    correctioncycle(n-1,guessxt,residxt,dt);
+  }
+}
+
+cmplx* wfxt::residualcorrection(int n, cmplx** guesst, cmplx** residxt, rl dt){
+  //set up and solve linear system for deltapsin s.t. 
+  // (II Olap_{i,j} Q_{n,n}-H_{i,j} U_{n,n})C_{j,n}=-resid_{i,n}
+  cmplx II=cmplx(0.,1.);
+  int neq=nbf;
+
+  //set up rhsmat to be -resid_{i,n}
+  cmplx* __restrict rhsvec=new cmplx[neq];
+  for(int i=0;i<neq;i++){
+    rhsvec[i]=-residxt[n][i];
+  }
+
+  int kl=gbas->xorder;
+  int ku=gbas->xorder;
+  int width=2*kl+ku+1;
+  
+  rl Qval=triD_Q(n,n,dt);
+  rl Uval=triD_U(n,n,dt);
+
+  //copy element hmat, olap into lhsmat
+  cmplx* lhsmat=new cmplx[nbf*width];
+  for(int eltnum=0;eltnum<gbas->nelts;eltnum++){
+    derivedbasis* tmpbasis=gbas->elementbases[eltnum];
+    cmplx* tmph=tmpbasis->Hmat;
+    cmplx* tmpo=tmpbasis->omat;
+    int tmporder=tmpbasis->order;
+    for(int i=0;i<tmporder;i++){
+      for(int j=0;j<tmporder;j++){
+	int indx1=gbas->eltfirstindices[eltnum]+i;
+	int indx2=gbas->eltfirstindices[eltnum]+j;
+	lhsmat[bandarrayindx(indx1,indx2,ku,kl,nbf)]+=
+	  II*Qval*tmpo[arrayindx(i,j,tmporder,tmporder)]-
+	  Uval*tmph[arrayindx(i,j,tmporder,tmporder)];
+      }
+    }
+  }
+
+  //solve for deltapsin using zgbsv
+  int info=0;
+  int* ipiv=new int[neq];
+  int nrhs=1;
+  int ldab=2*kl+ku+1;
+
+  zgbsv(&neq,&kl,&ku,&nrhs,lhsmat,&ldab,ipiv,rhsvec,&neq,&info);
+  if(info!=0){
+    cout << "problem with zgbsv in residualcorrection! "<<info<<"\n";
+  }
+  delete [] lhsmat;
+  delete [] ipiv;
+  return rhsvec;
+}
+
+void wfxt::triD_applyupdate(int n, cmplx* deltapsin, 
+			    cmplx** guessxt, cmplx** residxt, rl dt){
+  cmplx II=cmplx(0.,1.);
+
+  //apply update to guess
+  for(int i=0;i<nbf;i++){
+    guessxt[n][i]+=deltapsin[i];
+  }
+
+  //calculate residuals of deltapsin and apply to residxt
+  cmplx* Hdeltapsi=gbas->Hpsi(deltapsin);
+  cmplx* Olapdeltapsi=gbas->Olappsi(deltapsin);
+
+  
+  int Uindxmin=max(1,n-1);
+  int Uindxmax=n+1;
+  int Qindxmin=1;
+  int Qindxmax=max(1,n-1);
+  //different definition of F0 means that n=0 is a special case
+  if(n==0){
+    int Uindxmin=1;
+    int Uindxmax=2;
+    int Qindxmin=1;
+    int Qindxmax=2;
+  }
+  //apply II*Olap.Qmat
+  for(int m=Qindxmin;m<=Qindxmax;m++){
+    rl Qval=triD_Q(n,m,dt);
+    for(int j=0;j<nbf;j++){
+      residxt[m][j]+=II*Qval*Olapdeltapsi[j];
+    }
+  }
+  //apply -H.Umat
+  for(int m=Uindxmin;m<=Uindxmax;m++){
+    rl Uval=triD_U(n,m,dt);
+    for(int j=0;j<nbf;j++){
+      residxt[m][j]-=Uval*Hdeltapsi[j];
+    }
+  }
+}
